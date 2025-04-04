@@ -50,18 +50,26 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // calling function from scala
+
+        // calling functions from scala
+        int x_label = 60;
+        int y_label = 100;
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JLabel label = new JLabel();
 
-                label.setText(TextForGraphics.my_function());
-                graphicsView.add(label); //does not work
-                //System.out.println(TextForGraphics.my_function()); this is just for testing and it works
-                codeEditor.append(TextForGraphics.my_function()); //works
+                graphicsView.setLayout(null);
+                graphicsView.add(label);
+                label.setText(TextForGraphics.labelsForGraphics());
+                Dimension labelSize = label.getPreferredSize();
+                label.setBounds(x_label, y_label, labelSize.width, labelSize.height);
+
+                //System.out.println(TextForGraphics.my_function()); this is just for testing
+                codeEditor.append(TextForGraphics.commandsText());
                 codeEditor.append("\n");
 
+                //graphicsView.add(ShapesForGraphics.my_drawing());
             }
         });
     }
