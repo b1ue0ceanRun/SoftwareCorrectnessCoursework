@@ -126,3 +126,4 @@ sbt_project_experiment/target/streams/runtime/managedClasspath/_global/streams/e
 sbt_project_experiment/target/streams/runtime/unmanagedClasspath/_global/streams/export
 sbt_project_experiment/target/streams/runtime/unmanagedClasspath/_global/streams/out
 sbt_project_experiment/target/streams/runtime/unmanagedJars/_global/streams/export
+sbt_project_experiment/target/scala-3.3.1/zinc/inc_compile_3.zip

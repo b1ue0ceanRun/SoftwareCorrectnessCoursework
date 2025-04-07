@@ -55,7 +55,7 @@ public class Main {
         button.addActionListener(e -> {
             String code = codeEditor.getText();
             parser.receiveCode(code);  
-            graphicsView.repaint();  
+            graphicsView.update();  
         });
 
     }

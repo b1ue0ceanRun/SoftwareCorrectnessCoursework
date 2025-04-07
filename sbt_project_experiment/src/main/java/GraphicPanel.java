@@ -7,19 +7,25 @@ public class GraphicPanel extends JPanel {
     public GraphicPanel(State state) {
         this.state = state;
     }
-    
     @Override // called on initial render and repaint
     protected void paintComponent(Graphics g) {
         
         super.paintComponent(g); // default initialisation
-        var g2 = (Graphics2D) g; // cast to advanced graphic resource, dont know if neccesary
+        var g2 = (Graphics2D) g; // cast to advanced graphic resource
 
-        // should be iterating through state list, with cases for each command
+        // todo: should be iterating through state list, with cases for each command
         if (state.getState()) {
             g2.setColor(Color.BLUE);
             g2.drawOval(100, 100, 80, 80);  // Circle coordinates and size
         }
     }
+
+    public void update() {
+        this.repaint();
+    }
+
+
+
 
     
 }
