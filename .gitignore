@@ -127,3 +127,7 @@ sbt_project_experiment/target/streams/runtime/unmanagedClasspath/_global/streams
 sbt_project_experiment/target/streams/runtime/unmanagedClasspath/_global/streams/out
 sbt_project_experiment/target/streams/runtime/unmanagedJars/_global/streams/export
 sbt_project_experiment/target/scala-3.3.1/zinc/inc_compile_3.zip
+sbt_project_experiment/target/bg-jobs/sbt_9b5e2c45/job-1/target/755607a7/1a203e74/javascalainterop_3-0.1.0-SNAPSHOT.jar
+sbt_project_experiment/target/bg-jobs/sbt_9b5e2c45/target/acc9e0d5/c31fd233/scala3-library_3-3.3.1.jar
+sbt_project_experiment/target/bg-jobs/sbt_9b5e2c45/target/fab778d7/06ac27ae/scala-library-2.13.10.jar
+sbt_project_experiment/target/global-logging/sbt-global-log9439555068869018044.log
