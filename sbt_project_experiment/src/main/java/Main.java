@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import scala.util.Either;
 
 public class Main {
     public static void main(String[] args) {
@@ -54,8 +55,19 @@ public class Main {
         
         button.addActionListener(e -> {
             String code = codeEditor.getText();
-            parser.receiveCode(code);  
-            graphicsView.update();  
+            
+            Either result = parser.receiveCode(code);
+            
+            if (result.isRight()) {
+                graphicsView.update();
+                // clear errorWindow
+                System.out.println(result);
+            } else {
+                // show error in errorWindow
+                String errorMsg = result.left().get().toString(); 
+                System.out.println(result);
+                JOptionPane.showMessageDialog(frame, errorMsg, "Parse Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
 
     }
