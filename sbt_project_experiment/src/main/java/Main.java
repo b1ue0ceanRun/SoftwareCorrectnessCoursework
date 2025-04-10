@@ -63,7 +63,7 @@ public class Main {
                 // clear errorWindow
                 System.out.println(result);
             } else {
-                // show error in errorWindow
+                // show error in errorWindow. TOOD: fix
                 String errorMsg = result.left().get().toString(); 
                 System.out.println(result);
                 JOptionPane.showMessageDialog(frame, errorMsg, "Parse Error", JOptionPane.ERROR_MESSAGE);

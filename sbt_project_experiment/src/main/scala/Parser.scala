@@ -1,6 +1,4 @@
 import scala.util.parsing.combinator._
-
-
 sealed trait Command
 case class Circle(x: Double, y: Double, r: Double) extends Command
 
@@ -27,8 +25,14 @@ class Parser(state: State) extends RegexParsers {
   def command: Parser[Command] = circle
 
 def receiveCode(code: String): Either[String, Command] =
-  parseAll(command, code) match {
-    case Success(result, _) => Right(result)
+  parseAll(command, code) match 
+  { // add drawing instruction upon succesful parsing
+    case Success(result, _) =>
+      state.addInstruction(result match 
+      {
+        case Circle(x, y, r) => List("CIRCLE", x, y, r)
+      }) Right(result)
+    
     case NoSuccess(msg, _)  => Left(msg)
   }
 
