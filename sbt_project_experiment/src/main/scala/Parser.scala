@@ -1,3 +1,6 @@
+import scala.{Either, Right}
+import scala.util._
+import scala.util.Success
 import scala.util.parsing.combinator._
 sealed trait Command
 case class Circle(x: Double, y: Double, r: Double) extends Command
@@ -24,19 +27,18 @@ class Parser(state: State) extends RegexParsers {
   
   def command: Parser[Command] = circle
 
-def receiveCode(code: String): Either[String, Command] =
-  parseAll(command, code) match 
-  { // add drawing instruction upon succesful parsing
-    case Success(result, _) =>
-      state.addInstruction(result match 
-      {
-        case Circle(x, y, r) => List("CIRCLE", x, y, r)
-      }) Right(result)
-    
-    case NoSuccess(msg, _)  => Left(msg)
+  def receiveCode(code: String): Either[String, Command] = {
+    parseAll(command, code) match { // add drawing instruction upon succesful parsing
+      case Success(result, _) =>
+        state.addInstruction(result match {
+          case Circle(x, y, r) => List("CIRCLE", x, y, r)
+        }) Right(result)
+
+      case NoSuccess(msg, _) => Left(msg)
+    }
   }
 
-// (CIRCLE (12 12) 3):
+  // (CIRCLE (12 12) 3):
 
 
 }

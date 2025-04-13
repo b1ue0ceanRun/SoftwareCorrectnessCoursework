@@ -6,11 +6,10 @@ To Run:
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import scala.util.Either;
 
-public class Main {
+public class MakeWindow {
     public static void main(String[] args) {
         JFrame frame = new JFrame("CHARTS!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
