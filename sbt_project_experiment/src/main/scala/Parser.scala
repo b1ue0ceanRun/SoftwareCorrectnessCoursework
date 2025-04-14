@@ -4,16 +4,16 @@ import scala.util.Success
 import scala.util.parsing.combinator._
 
 sealed trait Command
-case class Circle(x: Double, y: Double, r: Double) extends Command
+case class Circle(x: Int, y: Int, r: Int) extends Command
 
 // scala parsing resource
 class Parser(state: State) extends RegexParsers {
     
-  // define number as possibly negative, multiple digits and a decimal part and map to double
-  def number: Parser[Double] = """-?\d+(\.\d+)?""".r ^^ (_.toDouble)
+  // define number as possibly negative, multiple digits and a decimal part and map to int
+  def number: Parser[Int] = """-?\d+""".r ^^ (_.toInt)
 
   // map two numbers, seperated by whitespace, enclosed in parenthesis to a tuple
-  def point: Parser[(Double, Double)] =
+  def point: Parser[(Int, Int)] =
     "(" ~> number ~ number <~ ")" ^^ {
       case x ~ y => (x, y)
     }
