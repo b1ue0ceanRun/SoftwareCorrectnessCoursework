@@ -22,7 +22,7 @@ public class MakeWindow {
         // The two main sub-windows, graphics and code editor + the error window
         GraphicPanel graphicsView = new GraphicPanel(state);
         JTextArea codeEditor = new JTextArea();
-        JPanel errorWindow = new JPanel();
+        JTextArea errorWindow = new JTextArea();
         
         // make drawing button
         JButton button = new JButton("Render");
@@ -65,8 +65,9 @@ public class MakeWindow {
             } else {
                 // show error in errorWindow. TOOD: fix
                 String errorMsg = result.left().get().toString(); 
-                System.out.println(result);
-                JOptionPane.showMessageDialog(frame, errorMsg, "Parse Error", JOptionPane.ERROR_MESSAGE);
+                //System.out.println(result);
+                errorWindow.append(errorMsg);
+                //JOptionPane.showMessageDialog(frame, errorMsg, "Parse Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
