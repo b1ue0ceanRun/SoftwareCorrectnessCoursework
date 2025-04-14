@@ -1,3 +1,5 @@
+package sbt_project_experiment.src.main.java
+
 import scala.{Either, Right}
 import scala.util._
 import scala.util.Success
@@ -27,16 +29,14 @@ class Parser(state: State) extends RegexParsers {
   
   def command: Parser[Command] = circle
 
-  def receiveCode(code: String): Either[String, Command] = {
-    parseAll(command, code) match { // add drawing instruction upon succesful parsing
-      case Success(result, _) =>
-        state.addInstruction(result match {
-          case Circle(x, y, r) => List("CIRCLE", x, y, r)
-        }) 
-        Right(result)
+  def receiveCode(code: String): Either[String, Command] = parseAll(command, code) match { // add drawing instruction upon succesful parsing
+    case Success(result, _) =>
+      state.addInstruction(result match {
+        case Circle(x, y, r) => List("CIRCLE", x, y, r)
+      })
+      Right(result)
 
-      case NoSuccess(msg, _) => Left(msg)
-    }
+    case NoSuccess(msg, _) => Left(msg)
   }
 
   // (CIRCLE (12 12) 3):

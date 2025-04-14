@@ -1,4 +1,10 @@
+package sbt_project_experiment.src.main.scala
 
+object Drawer {
+  def drawCircle(): Unit = {
+    println("Hello")
+  }
+}
 
 
 /* 
