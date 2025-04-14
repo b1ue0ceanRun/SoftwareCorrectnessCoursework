@@ -45,40 +45,40 @@ object Drawer {
   }
   
   // compute points along a circle using the midpoint algorithm
-def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
-  var x = 0
-  var y = radius
-  var d = 1 - radius
+  def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
+    var x = 0
+    var y = radius
+    var d = 1 - radius
   
-  // plot eight points at once
-  def plotEightPoints(x: Int, y: Int): Unit = {
-    val cx = centerX
-    val cy = centerY
-    
-    // draw pixels at the 8 symmetric points of a circle
-    drawPixel(cx + x, cy + y)
-    drawPixel(cx - x, cy + y)
-    drawPixel(cx + x, cy - y)
-    drawPixel(cx - x, cy - y)
-    drawPixel(cx + y, cy + x)
-    drawPixel(cx - y, cy + x)
-    drawPixel(cx + y, cy - x)
-    drawPixel(cx - y, cy - x)
-  }
-  
-  plotEightPoints(x, y)
-  
-  // iterate over one octant and reflect points to complete the circle
-  while (x < y) {
-    x += 1
-    if (d < 0) {
-      d += 2 * x + 1
-    } else {
-      y -= 1
-      d += 2 * (x - y) + 1
+    // plot eight points at once
+    def plotEightPoints(x: Int, y: Int): Unit = {
+      val cx = centerX
+      val cy = centerY
+
+      // draw pixels at the 8 symmetric points of a circle
+      drawPixel(cx + x, cy + y)
+      drawPixel(cx - x, cy + y)
+      drawPixel(cx + x, cy - y)
+      drawPixel(cx - x, cy - y)
+      drawPixel(cx + y, cy + x)
+      drawPixel(cx - y, cy + x)
+      drawPixel(cx + y, cy - x)
+      drawPixel(cx - y, cy - x)
     }
+
     plotEightPoints(x, y)
-  }
+
+    // iterate over one octant and reflect points to complete the circle
+    while (x < y) {
+      x += 1
+      if (d < 0) {
+        d += 2 * x + 1
+      } else {
+        y -= 1
+        d += 2 * (x - y) + 1
+      }
+      plotEightPoints(x, y)
+    }
 }
   
   def drawSequence(): Unit = {
@@ -102,10 +102,10 @@ def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
             updateGraphics()
             Thread.sleep(500) // pause for effect
         case Rectangle(x0, y0, x1, y1) =>
-          Drawer.drawRectangle(x0, y0, x1, y1)
-          // update after each shape
-          updateGraphics()
-          Thread.sleep(500) // pause for effect
+            Drawer.drawRectangle(x0, y0, x1, y1)
+            // update after each shape
+            updateGraphics()
+            Thread.sleep(500) // pause for effect
         }
     }
   

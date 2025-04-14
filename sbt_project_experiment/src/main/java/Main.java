@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.text.Utilities;
 import java.awt.*;
 
 import scala.util.Either;
@@ -48,11 +49,15 @@ public class Main {
         frame.setVisible(true);
         
         button.addActionListener(e -> {
+            int end = codeEditor.getDocument().getLength();
+
             String code = codeEditor.getText();
-            
+            codeEditor.append("\n");
+
+
             // clear state and UI for new parsing
             State$.MODULE$.clearInstructions(); // clear instructions first
-            State$.MODULE$.clearPixels();       // clear pixels
+            //State$.MODULE$.clearPixels();       // clear pixels
             errorWindow.setText("");            // clear error window
             errorWindow.setBackground(Color.LIGHT_GRAY);
             
