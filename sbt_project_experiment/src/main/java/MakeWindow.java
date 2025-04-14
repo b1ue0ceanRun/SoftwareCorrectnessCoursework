@@ -1,12 +1,6 @@
-/* 
-To Run:
-- javac Main.java
-- java Main  
- */
 
 import javax.swing.*;
 import java.awt.*;
-
 import scala.util.Either;
 
 public class MakeWindow {

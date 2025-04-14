@@ -32,7 +32,8 @@ class Parser(state: State) extends RegexParsers {
       case Success(result, _) =>
         state.addInstruction(result match {
           case Circle(x, y, r) => List("CIRCLE", x, y, r)
-        }) Right(result)
+        }) 
+        Right(result)
 
       case NoSuccess(msg, _) => Left(msg)
     }
