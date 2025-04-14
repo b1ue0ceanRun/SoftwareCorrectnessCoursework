@@ -15,6 +15,7 @@ public class Main {
         
         // The two main sub-windows, graphics and code editor + the error window
         GraphicPanel graphicsView = new GraphicPanel();
+        Drawer$.MODULE$.setGraphicPanel(graphicsView);
         JTextArea codeEditor = new JTextArea();
         JTextArea errorWindow = new JTextArea();
 
@@ -49,23 +50,19 @@ public class Main {
         button.addActionListener(e -> {
             String code = codeEditor.getText();
             
+            // clear old pixels first
+            State.clearPixels();
+            graphicsView.clearPixels();
+            
             Either result = Parser$.MODULE$.receiveCode(code);
             
             if (result.isRight()) {
-
-                // send state to Drawer
                 Drawer$.MODULE$.drawSequence();
-
                 graphicsView.update();
                 
-                // clear errorWindow
-                System.out.println(result);
             } else {
-                // show error in errorWindow. TOOD: fix
-                String errorMsg = result.left().get().toString(); 
-                //System.out.println(result);
+                String errorMsg = result.left().get().toString();
                 errorWindow.append(errorMsg);
-                //JOptionPane.showMessageDialog(frame, errorMsg, "Parse Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
