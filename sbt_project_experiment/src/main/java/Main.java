@@ -20,7 +20,7 @@ public class Main {
         JTextArea errorWindow = new JTextArea();
 
         // ErroeWindow style
-        errorWindow.setBackground(Color.RED);
+        errorWindow.setBackground(Color.LIGHT_GRAY);
         errorWindow.setFont(errorWindow.getFont().deriveFont(Font.BOLD, 14f));
         
         // make drawing button
@@ -52,8 +52,9 @@ public class Main {
             
             // clear state and UI for new parsing
             State$.MODULE$.clearInstructions(); // clear instructions first
-            State$.MODULE$.clearPixels();       // clear pixels 
+            State$.MODULE$.clearPixels();       // clear pixels
             errorWindow.setText("");            // clear error window
+            errorWindow.setBackground(Color.LIGHT_GRAY);
             
             Either result = Parser$.MODULE$.receiveCode(code);
             
@@ -62,6 +63,7 @@ public class Main {
                 System.out.println(result);
             } else {
                 String errorMsg = result.left().get().toString();
+                errorWindow.setBackground(Color.RED);
                 errorWindow.setText(errorMsg);
             }
         });
