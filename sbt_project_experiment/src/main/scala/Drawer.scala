@@ -1,10 +1,4 @@
-package sbt_project_experiment.src.main.scala
 
-object Drawer {
-  def drawCircle(): Unit = {
-    println("Hello")
-  }
-}
 
 
 /* 
@@ -16,3 +10,74 @@ Steps thorugh state list and calls individual scala drawing algos like drawCircl
 + updates graphicpanel class (inside for loop)
 
 */
+
+
+object Drawer {
+
+  // placeholder 
+  def drawPixel(x: Int, y: Int): Unit = {
+    println(s"Pixel at ($x, $y)")
+  }
+
+  // use Bresenham's algorithm to draw a line from (x0, y0) to (x1, y1)
+  def drawLine(x0: Int, y0: Int, x1: Int, y1: Int): Unit = {
+    var x = x0
+    var y = y0
+    val dx = Math.abs(x1 - x0)
+    val dy = Math.abs(y1 - y0)
+    val sx = if (x0 < x1) 1 else -1
+    val sy = if (y0 < y1) 1 else -1
+    var err = dx - dy
+
+    while (true) {
+      drawPixel(x, y) // draw current pixel
+      if (x == x1 && y == y1) return // stop when end point is reached
+      val e2 = 2 * err
+      if (e2 > -dy) {
+        err -= dy
+        x += sx
+      }
+      if (e2 < dx) {
+        err += dx
+        y += sy
+      }
+    }
+  }
+
+  // compute points along a circle using the midpoint algorithm
+  def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
+    var x = 0
+    var y = radius
+    var d = 1 - radius
+
+    // draw lines from the center to each of the 8 symmetric points
+    def plotSymmetricPoints(x: Int, y: Int): Unit = {
+      val cx = centerX
+      val cy = centerY
+
+      drawLine(cx, cy, cx + x, cy + y)
+      drawLine(cx, cy, cx - x, cy + y)
+      drawLine(cx, cy, cx + x, cy - y)
+      drawLine(cx, cy, cx - x, cy - y)
+      drawLine(cx, cy, cx + y, cy + x)
+      drawLine(cx, cy, cx - y, cy + x)
+      drawLine(cx, cy, cx + y, cy - x)
+      drawLine(cx, cy, cx - y, cy - x)
+    }
+
+    plotSymmetricPoints(x, y)
+
+    // iterate over one octant and reflect points to complete the circle
+    while (x < y) {
+      x += 1
+      if (d < 0) {
+        d += 2 * x + 1
+      } else {
+        y -= 1
+        d += 2 * (x - y) + 1
+      }
+      plotSymmetricPoints(x, y)
+    }
+  }
+
+}
