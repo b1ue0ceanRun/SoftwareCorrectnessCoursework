@@ -86,6 +86,8 @@ def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
     State.getState.foreach {
         case Circle(x, y, r) => 
             Drawer.drawCircle(x, y, r)
+        case Line(x0, y0, x1, y1) =>
+          Drawer.drawLine(x0, y0, x1, y1)
             // update after each shape
             updateGraphics()
             Thread.sleep(500) // pause for effect

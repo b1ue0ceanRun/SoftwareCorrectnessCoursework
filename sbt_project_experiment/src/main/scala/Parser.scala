@@ -5,6 +5,8 @@ import scala.util.parsing.combinator._
 
 sealed trait Command
 case class Circle(x: Int, y: Int, r: Int) extends Command
+case class Rectangle(x1: Int, y1: Int, x2: Int, y2:Int) extends Command
+case class Line(x1: Int, y1: Int, x2: Int, y2:Int) extends Command
 
 // scala parsing resource
 object Parser extends RegexParsers {
@@ -23,9 +25,22 @@ object Parser extends RegexParsers {
     "(" ~> "CIRCLE" ~ point ~ number <~ "):" ^^ {
       case _ ~ (x, y) ~ r => Circle(x, y, r)
     }
-  
+
+  // map (RECTANGLE (x1 y1) (x2 y2)) to Rectagle(x1, y1, x2, y2)
+  def rectangle: Parser[Rectangle] =
+    "(" ~> "RECTANGLE" ~ point ~ point <~ "):" ^^ {
+      case _ ~ (x1, y1) ~ (x2, y2) => Rectangle(x1, y1, x2, y2)
+    }
+
+  // map (Line (x1 y1) (x2 y2)) to Line(x1, y1, x2, y2)
+  def line: Parser[Line] =
+    "(" ~> "LINE" ~ point ~ point <~ "):" ^^ {
+      case _ ~ (x1, y1) ~ (x2, y2) => Line(x1, y1, x2, y2)
+    }
+
   // general command parser
-  def command: Parser[Command] = circle
+  def command: Parser[Command] = line
+
 
   // take raw string code input and try to parse it into a command
   def receiveCode(code: String): Either[String, Command] = parseAll(command, code) match { 
@@ -38,5 +53,7 @@ object Parser extends RegexParsers {
       Left(msg)                       // return error
   }
 
-  // Example: (CIRCLE (12 12) 3):
+  // Example: (CIRCLE (120 120) 30):
+  // (RECTANGLE (10 10) (400 400)):
+  // (LINE (10 10) (400 400)):
 }
