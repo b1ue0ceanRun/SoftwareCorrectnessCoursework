@@ -7,7 +7,7 @@ sealed trait Command
 case class Circle(x: Int, y: Int, r: Int) extends Command
 
 // scala parsing resource
-class Parser(state: State) extends RegexParsers {
+object Parser extends RegexParsers {
     
   // define number as possibly negative, multiple digits and a decimal part and map to int
   def number: Parser[Int] = """-?\d+""".r ^^ (_.toInt)
@@ -31,7 +31,7 @@ class Parser(state: State) extends RegexParsers {
   def receiveCode(code: String): Either[String, Command] = parseAll(command, code) match { 
     // add drawing instruction upon successful parsing
     case Success(result, _) =>
-      state.addInstruction(result)    // store the Command itself
+      State.addInstruction(result)    // store the Command itself
       Right(result)
 
     case NoSuccess(msg, _) =>

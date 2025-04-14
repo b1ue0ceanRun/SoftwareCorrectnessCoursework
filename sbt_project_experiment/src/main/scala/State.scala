@@ -1,4 +1,4 @@
-class State {
+object State {
     
   private var _drawingInstructions: List[Command] = List.empty
 
@@ -9,3 +9,4 @@ class State {
   }
 
 }
+  

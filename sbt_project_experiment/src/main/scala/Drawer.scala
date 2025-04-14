@@ -80,14 +80,19 @@ object Drawer {
     }
   }
 
+  def drawSequence(): Unit = {
+    State.getState.foreach {
+      case Circle(x, y, r) => Drawer.drawCircle(x, y, r)
 }
+
+  }
+
+}
+  // Example: (CIRCLE (12 12) 3):
 
 
 
 /*
 
-state.getState.foreach {
-  case Circle(x, y, r) => Drawer.drawCircle(x, y, r)
-}
 
 */

@@ -3,22 +3,18 @@ import java.awt.*;
 
 import scala.util.Either;
 
-public class MakeWindow {
+public class Main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("CHARTS!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 700);
-        
-        //scala classes
-        State state = new State();
-        Parser parser = new Parser(state);
-
+                
         // Main panel
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel bottomPanel = new JPanel(new BorderLayout());
         
         // The two main sub-windows, graphics and code editor + the error window
-        GraphicPanel graphicsView = new GraphicPanel(state);
+        GraphicPanel graphicsView = new GraphicPanel();
         JTextArea codeEditor = new JTextArea();
         JTextArea errorWindow = new JTextArea();
 
@@ -53,11 +49,12 @@ public class MakeWindow {
         button.addActionListener(e -> {
             String code = codeEditor.getText();
             
-            Either result = parser.receiveCode(code);
+            Either result = Parser$.MODULE$.receiveCode(code);
             
             if (result.isRight()) {
 
                 // send state to Drawer
+                Drawer$.MODULE$.drawSequence();
 
                 graphicsView.update();
                 

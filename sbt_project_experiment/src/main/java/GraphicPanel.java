@@ -1,12 +1,9 @@
-package sbt_project_experiment.src.main.java;
 import javax.swing.*;
 import java.awt.*;
 
 public class GraphicPanel extends JPanel {
-    private State state; // reference to state class
 
-    public GraphicPanel(State state) {
-        this.state = state;
+    public GraphicPanel() {
     }
     @Override // called on initial render and repaint
     protected void paintComponent(Graphics g) {
