@@ -19,7 +19,7 @@ public class GraphicPanel extends JPanel {
         // draw all pixels
         g2.setColor(Color.BLACK);
         for (Point p : pixels) {
-            g2.fillRect(p.x, p.y, 2, 2); // 1px dot
+            g2.fillRect(p.x, p.y, 1, 1); // 1px dot
         }
     }
     
