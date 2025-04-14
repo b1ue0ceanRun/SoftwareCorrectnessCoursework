@@ -75,15 +75,22 @@ def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
 }
   
   def drawSequence(): Unit = {
-
+    // Just clear the display before drawing
+    if (graphicPanel != null) {
+        graphicPanel.clearPixels();
+    }
+    
+    // Clear pixel state (but keep instructions)
+    State.clearPixels();
+    
     State.getState.foreach {
         case Circle(x, y, r) => 
             Drawer.drawCircle(x, y, r)
             // update after each shape
             updateGraphics()
-            //Thread.sleep(300) // pause for effect
+            Thread.sleep(500) // pause for effect
+        }
     }
-}
   
   // sync panel with state
   private def updateGraphics(): Unit = {

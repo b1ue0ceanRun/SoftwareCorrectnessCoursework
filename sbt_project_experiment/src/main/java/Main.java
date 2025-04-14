@@ -50,21 +50,19 @@ public class Main {
         button.addActionListener(e -> {
             String code = codeEditor.getText();
             
-            // clear everything
-            State$.MODULE$.clearAll();
-            graphicsView.clearPixels();
-            errorWindow.setText("");
+            // clear state and UI for new parsing
+            State$.MODULE$.clearInstructions(); // clear instructions first
+            State$.MODULE$.clearPixels();       // clear pixels 
+            errorWindow.setText("");            // clear error window
             
             Either result = Parser$.MODULE$.receiveCode(code);
             
             if (result.isRight()) {
                 Drawer$.MODULE$.drawSequence();
-                graphicsView.update();
-                
                 System.out.println(result);
             } else {
                 String errorMsg = result.left().get().toString();
-                errorWindow.setText(errorMsg); 
+                errorWindow.setText(errorMsg);
             }
         });
 
