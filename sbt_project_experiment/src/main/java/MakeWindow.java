@@ -1,8 +1,6 @@
-package sbt_project_experiment.src.main.java;
 import javax.swing.*;
 import java.awt.*;
 
-import sbt_project_experiment.src.main.scala.Drawer;
 import scala.util.Either;
 
 public class MakeWindow {
@@ -60,7 +58,6 @@ public class MakeWindow {
             if (result.isRight()) {
 
                 // send state to Drawer
-                Drawer.drawCircle();
 
                 graphicsView.update();
                 

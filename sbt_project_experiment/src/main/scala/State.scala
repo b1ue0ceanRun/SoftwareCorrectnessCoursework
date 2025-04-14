@@ -1,13 +1,11 @@
-package sbt_project_experiment.src.main.java
 class State {
     
-    private var _drawingInstructions = List.empty
+  private var _drawingInstructions: List[Command] = List.empty
 
-    def getState: List[List[Any]] = _drawingInstructions
+  def getState: List[Command] = _drawingInstructions
 
-    def addInstruction(instruction: List[Any]): Unit =
-    {
-      //_drawingInstructions = _drawingInstructions :+ instruction
-    }
+  def addInstruction(instruction: Command): Unit = {
+    _drawingInstructions = _drawingInstructions :+ instruction
+  }
 
 }

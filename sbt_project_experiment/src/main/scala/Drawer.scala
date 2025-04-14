@@ -81,3 +81,13 @@ object Drawer {
   }
 
 }
+
+
+
+/*
+
+state.getState.foreach {
+  case Circle(x, y, r) => Drawer.drawCircle(x, y, r)
+}
+
+*/
