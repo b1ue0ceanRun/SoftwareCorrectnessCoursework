@@ -87,12 +87,17 @@ def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
   
   // sync panel with state
   private def updateGraphics(): Unit = {
-    if (graphicPanel != null) {
-      graphicPanel.clearPixels()
-      State.getPixels.foreach { case (x, y) => 
-        graphicPanel.addPixel(x, y)
-      }
-      graphicPanel.update()
+  if (graphicPanel != null) {
+    graphicPanel.clearPixels() // clear existing pixels
+    
+    // add all current pixels from state
+    State.getPixels.foreach { case (x, y) => 
+      graphicPanel.addPixel(x, y)
     }
+    graphicPanel.update() // repaint
   }
 }
+}
+
+
+// (CIRCLE (400 400) 30):

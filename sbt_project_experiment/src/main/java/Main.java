@@ -50,9 +50,10 @@ public class Main {
         button.addActionListener(e -> {
             String code = codeEditor.getText();
             
-            // clear old pixels first
-            State.clearPixels();
+            // clear everything
+            State$.MODULE$.clearAll();
             graphicsView.clearPixels();
+            errorWindow.setText("");
             
             Either result = Parser$.MODULE$.receiveCode(code);
             
@@ -60,9 +61,10 @@ public class Main {
                 Drawer$.MODULE$.drawSequence();
                 graphicsView.update();
                 
+                System.out.println(result);
             } else {
                 String errorMsg = result.left().get().toString();
-                errorWindow.append(errorMsg);
+                errorWindow.setText(errorMsg); 
             }
         });
 
