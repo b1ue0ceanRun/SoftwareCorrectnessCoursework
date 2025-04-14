@@ -83,12 +83,12 @@ def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
   
   def drawSequence(): Unit = {
     // Just clear the display before drawing
-    if (graphicPanel != null) {
-        graphicPanel.clearPixels();
-    }
+    //if (graphicPanel != null) {
+      //  graphicPanel.clearPixels();
+   // }
     
     // Clear pixel state (but keep instructions)
-    State.clearPixels();
+    //State.clearPixels();
     
     State.getState.foreach {
         case Circle(x, y, r) => 
@@ -112,7 +112,7 @@ def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
   // sync panel with state
   private def updateGraphics(): Unit = {
   if (graphicPanel != null) {
-    graphicPanel.clearPixels() // clear existing pixels
+    //graphicPanel.clearPixels() // clear existing pixels
     
     // add all current pixels from state
     State.getPixels.foreach { case (x, y) => 
