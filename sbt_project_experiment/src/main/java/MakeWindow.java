@@ -23,6 +23,10 @@ public class MakeWindow {
         GraphicPanel graphicsView = new GraphicPanel(state);
         JTextArea codeEditor = new JTextArea();
         JTextArea errorWindow = new JTextArea();
+
+        // ErroeWindow style
+        errorWindow.setBackground(Color.RED);
+        errorWindow.setFont(errorWindow.getFont().deriveFont(Font.BOLD, 14f));
         
         // make drawing button
         JButton button = new JButton("Render");
