@@ -12,12 +12,8 @@ public class GraphicPanel extends JPanel {
         
         super.paintComponent(g); // default initialisation
         var g2 = (Graphics2D) g; // cast to advanced graphic resource
-
-        // todo: should be iterating through state list, with cases for each command
-        if (state.getState()) {
-            g2.setColor(Color.BLUE);
-            g2.drawOval(100, 100, 80, 80);  // Circle coordinates and size
-        }
+        
+        
     }
 
     public void update() {

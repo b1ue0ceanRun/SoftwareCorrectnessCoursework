@@ -52,7 +52,11 @@ public class MakeWindow {
             Either result = parser.receiveCode(code);
             
             if (result.isRight()) {
+
+                // send state to Drawer
+
                 graphicsView.update();
+                
                 // clear errorWindow
                 System.out.println(result);
             } else {
