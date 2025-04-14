@@ -39,7 +39,7 @@ object Parser extends RegexParsers {
     }
 
   // general command parser
-  def command: Parser[Command] = circle | line
+  def command: Parser[Command] = circle | line | rectangle
 
 
   // take raw string code input and try to parse it into a command

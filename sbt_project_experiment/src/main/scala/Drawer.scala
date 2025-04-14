@@ -36,6 +36,13 @@ object Drawer {
       }
     }
   }
+
+  def drawRectangle(x0: Int, y0: Int, x1: Int, y1: Int): Unit = {
+    drawLine(x0, y0, x1, y0)
+    drawLine(x0, y0, x0, y1)
+    drawLine(x0, y1, x1, y1)
+    drawLine(x1, y1, x1, y0)
+  }
   
   // compute points along a circle using the midpoint algorithm
 def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
@@ -94,6 +101,11 @@ def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
             // update after each shape
             updateGraphics()
             Thread.sleep(500) // pause for effect
+        case Rectangle(x0, y0, x1, y1) =>
+          Drawer.drawRectangle(x0, y0, x1, y1)
+          // update after each shape
+          updateGraphics()
+          Thread.sleep(500) // pause for effect
         }
     }
   
