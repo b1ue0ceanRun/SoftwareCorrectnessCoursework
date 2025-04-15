@@ -19,6 +19,9 @@ public class GraphicPanel extends JPanel {
         // move origo to bottom left: -65 is the height of the error window
         g2.translate(0, (Main.FRAME_HEIGHT - 65)); //(LINE (0 0) (700 635)): the line goes from left bottom to right corner
                                                     // (LINE (700 0) (0 635)): the line going from left top to right bottom
+        // (LINE (350 0) (350 700)): vertical line going through center
+        // (LINE (0 317) (700 317)): horizontal line going through center
+
         // flip y-axis so positive is up
         g2.scale(1, -1);
 
@@ -43,4 +46,18 @@ public class GraphicPanel extends JPanel {
     public void update() {
         this.repaint();
     }
+    // Drawing:
+    // (LINE (0 0) (700 635)):
+    //(LINE (700 0) (0 635)):
+    //(LINE (350 0) (350 700)):
+    //(LINE (0 317) (700 317)):
+    //(CIRCLE (350 317) 50):
+    //(CIRCLE (350 317) 100):
+    //(CIRCLE (350 317) 150):
+    //(LINE (280 700) (700 317)):
+    //(LINE (700 317) (350 0)):
+    //(LINE (350 0) (0 317)):
+    //(LINE (0 317) (420 700)):
+    //(RECTANGLE (200 140) (500 500)):
+
 }
