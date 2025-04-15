@@ -57,7 +57,7 @@ public class Main {
 
             // clear state and UI for new parsing
             State$.MODULE$.clearInstructions(); // clear instructions first
-            //State$.MODULE$.clearPixels();       // clear pixels
+            State$.MODULE$.clearPixels();       // clear pixels
             errorWindow.setText("");            // clear error window
             errorWindow.setBackground(Color.LIGHT_GRAY);
             

@@ -49,6 +49,7 @@ def receiveCode(code: String): Either[String, List[Command]] = {
   val results = commands.map(parseSingleCommand)
   
   if (results.exists(_.isLeft)) {
+    // display first error
     val firstError = results.collectFirst { case Left(msg) => msg }
     Left(firstError.getOrElse("Unknown parsing error"))
   } else {
