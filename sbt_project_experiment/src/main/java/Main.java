@@ -16,6 +16,7 @@ public class Main {
         JFrame frame = new JFrame("CHARTS!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        frame.setResizable(false);
                 
         // Main panel
         JPanel mainPanel = new JPanel(new BorderLayout());

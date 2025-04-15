@@ -16,9 +16,9 @@ public class GraphicPanel extends JPanel {
         super.paintComponent(g); // default initialisation
         var g2 = (Graphics2D) g; // cast to advanced graphic resource
         
-        // move origo to bottom left
-        g2.translate(0, Main.FRAME_HEIGHT);
-
+        // move origo to bottom left: -65 is the height of the error window
+        g2.translate(0, (Main.FRAME_HEIGHT - 65)); //(LINE (0 0) (700 635)): the line goes from left bottom to right corner
+                                                    // (LINE (700 0) (0 635)): the line going from left top to right bottom
         // flip y-axis so positive is up
         g2.scale(1, -1);
 
