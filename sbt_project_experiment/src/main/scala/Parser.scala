@@ -7,6 +7,7 @@ sealed trait Command
 case class Circle(x: Int, y: Int, r: Int) extends Command
 case class Rectangle(x1: Int, y1: Int, x2: Int, y2:Int) extends Command
 case class Line(x1: Int, y1: Int, x2: Int, y2:Int) extends Command
+case class TextAt(x: Int, y: Int, t: String) extends Command
 
 // scala parsing resource
 object Parser extends RegexParsers {
@@ -19,6 +20,8 @@ object Parser extends RegexParsers {
     "(" ~> number ~ number <~ ")" ^^ {
       case x ~ y => (x, y)
     }
+
+  def word: Parser[String] = """[a-zA-Z_]+""".r ^^ {_.toString} // empty spaces missing
 
   // map (CIRCLE (x y) r) to Circle(x, y, r)
   def circle: Parser[Circle] =
@@ -38,16 +41,21 @@ object Parser extends RegexParsers {
       case _ ~ (x1, y1) ~ (x2, y2) => Line(x1, y1, x2, y2)
     }
 
+  def textAt: Parser[TextAt] =
+    "(" ~> "TEXTAT" ~ point ~ word <~ "):" ^^ {
+      case _  ~ (x, y) ~ t => TextAt(x, y, t)
+    }
+
   // general command parser
-  def command: Parser[Command] = circle | line | rectangle
+  def command: Parser[Command] = circle | line | rectangle | textAt
 
 
 def receiveCode(code: String): Either[String, List[Command]] = {
   // split by colon and filter out empty entries, add : back, since parser expects it
   val commands = code.split(":").map(_.trim).filter(_.nonEmpty).map(_ + ":")
-  
+
   val results = commands.map(parseSingleCommand)
-  
+
   if (results.exists(_.isLeft)) {
     // display first error
     val firstError = results.collectFirst { case Left(msg) => msg }
@@ -59,16 +67,20 @@ def receiveCode(code: String): Either[String, List[Command]] = {
   }
 }
 
-// helper 
+// helper
 def parseSingleCommand(code: String): Either[String, Command] = parseAll(command, code.trim) match {
   case Success(result, _) => Right(result)
   case NoSuccess(msg, _) => Left(msg)
 }
-/* 
-     Example: 
+/*
+     Example:
     (CIRCLE (0 0) 70):
     (RECTANGLE (10 10) (400 400)):
     (LINE (10 10) (400 400)):
 
+  // Example: (CIRCLE (120 120) 30):
+  // (RECTANGLE (10 10) (400 400)):
+  // (LINE (10 10) (400 400)):
+  // (TEXTAT (100 100) Hello):
      */
 }

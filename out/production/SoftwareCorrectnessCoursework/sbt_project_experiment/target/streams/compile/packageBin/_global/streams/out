@@ -1,0 +1,35 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\javascalainterop_3-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GraphicPanel.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\GraphicPanel.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java\Circle$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java\Circle$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java\Circle.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java\Circle.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java\Circle.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java\Circle.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java\Command.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java\Command.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java\Command.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java\Command.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java\GraphicPanel.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java\GraphicPanel.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java\MakeWindow.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java\MakeWindow.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java\Parser.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java\Parser.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java\Parser.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java\Parser.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java\State.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java\State.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sbt_project_experiment\src\main\java\State.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\HaSp\Desktop\new\sbt_project_experiment\target\scala-3.3.1\classes\sbt_project_experiment\src\main\java\State.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

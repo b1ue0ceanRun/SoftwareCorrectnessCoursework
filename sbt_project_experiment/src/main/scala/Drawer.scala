@@ -44,7 +44,12 @@ object Drawer {
     drawLine(x0, y1, x1, y1)
     drawLine(x1, y1, x1, y0)
   }
-  
+
+  def drawText(x: Int, y: Int, t: String): Unit = {
+    // (TEXTAT (100 100) Hello):
+    println(s"Should show text $t on coordinates $x and $y")
+  }
+
   // compute points along a circle using the midpoint algorithm
   def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
     var x = 0
@@ -96,6 +101,8 @@ object Drawer {
           Drawer.drawLine(x0, y0, x1, y1)
         case Rectangle(x0, y0, x1, y1) =>
           Drawer.drawRectangle(x0, y0, x1, y1)
+        case TextAt(x, y, t) =>
+          Drawer.drawText(x, y, t)
       }
 
       // update the GUI after each shape
