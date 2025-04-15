@@ -42,18 +42,32 @@ object Parser extends RegexParsers {
   def command: Parser[Command] = circle | line | rectangle
 
 
-  // take raw string code input and try to parse it into a command
-  def receiveCode(code: String): Either[String, Command] = parseAll(command, code) match { 
-    // add drawing instruction upon successful parsing
-    case Success(result, _) =>
-      State.addInstruction(result)    // store the Command itself
-      Right(result)
-
-    case NoSuccess(msg, _) =>
-      Left(msg)                       // return error
+def receiveCode(code: String): Either[String, List[Command]] = {
+  // split by colon and filter out empty entries, add : back, since parser expects it
+  val commands = code.split(":").map(_.trim).filter(_.nonEmpty).map(_ + ":")
+  
+  val results = commands.map(parseSingleCommand)
+  
+  if (results.exists(_.isLeft)) {
+    val firstError = results.collectFirst { case Left(msg) => msg }
+    Left(firstError.getOrElse("Unknown parsing error"))
+  } else {
+    val parsedCommands = results.collect { case Right(cmd) => cmd }.toList
+    parsedCommands.foreach(State.addInstruction)
+    Right(parsedCommands)
   }
+}
 
-  // Example: (CIRCLE (120 120) 30):
-  // (RECTANGLE (10 10) (400 400)):
-  // (LINE (10 10) (400 400)):
+// helper 
+def parseSingleCommand(code: String): Either[String, Command] = parseAll(command, code.trim) match {
+  case Success(result, _) => Right(result)
+  case NoSuccess(msg, _) => Left(msg)
+}
+/* 
+     Example: 
+    (CIRCLE (120 120) 30):
+    (RECTANGLE (10 10) (400 400)):
+    (LINE (10 10) (400 400)):
+
+     */
 }
