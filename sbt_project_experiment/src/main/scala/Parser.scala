@@ -5,9 +5,10 @@ import scala.util.parsing.combinator._
 
 sealed trait Command
 case class Circle(x: Int, y: Int, r: Int) extends Command
-case class Rectangle(x1: Int, y1: Int, x2: Int, y2:Int) extends Command
+case class Rectangle(x1: Int, y1: Int, x2: Int, y2: Int) extends Command
 case class Line(x1: Int, y1: Int, x2: Int, y2:Int) extends Command
 case class TextAt(x: Int, y: Int, t: String) extends Command
+case class BoundingBox(x1: Int, y1: Int, x2: Int, y2: Int) extends Command
 
 // scala parsing resource
 object Parser extends RegexParsers {
@@ -22,6 +23,9 @@ object Parser extends RegexParsers {
     }
 
   def word: Parser[String] = """[a-zA-Z_]+""".r ^^ {_.toString} // empty spaces missing
+
+  def bool: Parser[Boolean] = """true|false""".r ^^ (_.toBoolean)
+
 
   // map (CIRCLE (x y) r) to Circle(x, y, r)
   def circle: Parser[Circle] =
@@ -46,8 +50,13 @@ object Parser extends RegexParsers {
       case _  ~ (x, y) ~ t => TextAt(x, y, t)
     }
 
+  def boundingBox: Parser[BoundingBox] =
+    "(" ~> "BOUNDINGBOX" ~ point ~ point <~ "):" ^^ {
+      case _ ~ (x1, y1) ~ (x2, y2) => BoundingBox(x1, y1, x2, y2)
+    }
+
   // general command parser
-  def command: Parser[Command] = circle | line | rectangle | textAt
+  def command: Parser[Command] = circle | line | rectangle | textAt | boundingBox
 
 
 def receiveCode(code: String): Either[String, List[Command]] = {
@@ -82,5 +91,6 @@ def parseSingleCommand(code: String): Either[String, Command] = parseAll(command
   // (RECTANGLE (10 10) (400 400)):
   // (LINE (10 10) (400 400)):
   // (TEXTAT (100 100) Hello):
+  (BOUNDINGBOX (10 10) (400 400)):
      */
 }

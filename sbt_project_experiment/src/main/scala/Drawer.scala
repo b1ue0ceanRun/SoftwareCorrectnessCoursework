@@ -50,6 +50,19 @@ object Drawer {
     println(s"Should show text $t on coordinates $x and $y")
   }
 
+  def drawBoundingBox(x0: Int, y0: Int, x1: Int, y1: Int): Unit = {
+    var isInside = true
+    if (x0 < 0 | y0 < 0 | x1 > 700 | y1 > 635){isInside = false}
+    if (graphicPanel != null) {println("You are already drawing")} // needs better condition, i.e. not to create the bounding box
+    // if there are already shapes + add that the other shapes can be only drawn where there is a boundingbox present
+    if(isInside){
+      drawRectangle(x0, y0, x1, y1)
+    }
+    else {
+      println("Not inside the GraphicPanel")
+    } // display the messages inside the error window
+  }
+
   // compute points along a circle using the midpoint algorithm
   def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
     var x = 0
@@ -103,6 +116,8 @@ object Drawer {
           Drawer.drawRectangle(x0, y0, x1, y1)
         case TextAt(x, y, t) =>
           Drawer.drawText(x, y, t)
+        case BoundingBox(x0, y0, x1, y1) =>
+          Drawer.drawBoundingBox(x0, y0, x1, y1)
       }
 
       // update the GUI after each shape
