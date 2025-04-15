@@ -1,14 +1,21 @@
 import javax.swing.*;
 import javax.swing.text.Utilities;
 import java.awt.*;
-
 import scala.util.Either;
 
+
+
 public class Main {
+    // Global constants for frame size
+    public static final int FRAME_WIDTH = 1000;
+    public static final int FRAME_HEIGHT = 700;
+
     public static void main(String[] args) {
+        
+        
         JFrame frame = new JFrame("CHARTS!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 700);
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
                 
         // Main panel
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -49,12 +56,8 @@ public class Main {
         frame.setVisible(true);
         
         button.addActionListener(e -> {
-            int end = codeEditor.getDocument().getLength();
-
             String code = codeEditor.getText();
-            codeEditor.append("\n");
-
-
+            
             // clear state and UI for new parsing
             State$.MODULE$.clearInstructions(); // clear instructions first
             State$.MODULE$.clearPixels();       // clear pixels
@@ -65,7 +68,6 @@ public class Main {
             
             if (result.isRight()) {
                 Drawer$.MODULE$.drawSequence();
-                System.out.println(result);
             } else {
                 String errorMsg = result.left().get().toString();
                 errorWindow.setBackground(Color.RED);

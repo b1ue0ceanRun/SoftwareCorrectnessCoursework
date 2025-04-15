@@ -1,3 +1,4 @@
+import javax.swing.SwingUtilities
 
 object Drawer {
   // panel ref
@@ -82,45 +83,40 @@ object Drawer {
 }
   
   def drawSequence(): Unit = {
-    // Just clear the display before drawing
-    if (graphicPanel != null) {
-        graphicPanel.clearPixels();
-    }
-    
-    //Clear pixel state (but keep instructions)
-    State.clearPixels();
-    
-    State.getState.foreach {
-        case Circle(x, y, r) => 
-            Drawer.drawCircle(x, y, r)
-            // update after each shape
-            updateGraphics()
-            Thread.sleep(500) // pause for effect
+  new Thread(() => {
+    // clear panel & pixel state before starting
+    SwingUtilities.invokeLater(() => graphicPanel.clearPixels())
+    State.clearPixels()
+
+    for (instruction <- State.getState) {
+      instruction match {
+        case Circle(x, y, r) =>
+          Drawer.drawCircle(x, y, r)
         case Line(x0, y0, x1, y1) =>
           Drawer.drawLine(x0, y0, x1, y1)
-            // update after each shape
-            updateGraphics()
-            Thread.sleep(500) // pause for effect
         case Rectangle(x0, y0, x1, y1) =>
-            Drawer.drawRectangle(x0, y0, x1, y1)
-            // update after each shape
-            updateGraphics()
-            Thread.sleep(500) // pause for effect
-        }
+          Drawer.drawRectangle(x0, y0, x1, y1)
+      }
+
+      // update the GUI after each shape
+      SwingUtilities.invokeLater(() => updateGraphics())
+
+      // wait before drawing the next one
+      Thread.sleep(500)
     }
-  
-  // sync panel with state
-  private def updateGraphics(): Unit = {
-  if (graphicPanel != null) {
-    graphicPanel.clearPixels() // clear existing pixels
-    
-    // add all current pixels from state
-    State.getPixels.foreach { case (x, y) => 
-      graphicPanel.addPixel(x, y)
-    }
-    graphicPanel.update() // repaint
-  }
+  }).start()
 }
+
+  // sync panel with state
+    private def updateGraphics(): Unit = {
+    if (graphicPanel != null) {
+        graphicPanel.clearPixels()
+        State.getPixels.foreach { case (x, y) =>
+        graphicPanel.addPixel(x, y)
+        }
+        graphicPanel.update()
+    }
+    }
 }
 
 

@@ -1,11 +1,9 @@
 object State {
    
   private var _drawingInstructions: List[Command] = List.empty
-  // pixel storage
   private var _pixels: List[(Int, Int)] = List.empty
   
   def getState: List[Command] = _drawingInstructions
-  // get current pixels
   def getPixels: List[(Int, Int)] = _pixels
   
   def addInstruction(instruction: Command): Unit = {

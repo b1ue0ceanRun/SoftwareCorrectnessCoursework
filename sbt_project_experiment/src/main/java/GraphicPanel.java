@@ -16,10 +16,17 @@ public class GraphicPanel extends JPanel {
         super.paintComponent(g); // default initialisation
         var g2 = (Graphics2D) g; // cast to advanced graphic resource
         
+        // move origo to bottom left
+        g2.translate(0, Main.FRAME_HEIGHT);
+
+        // flip y-axis so positive is up
+        g2.scale(1, -1);
+
+
         // draw all pixels
         g2.setColor(Color.BLACK);
         for (Point p : pixels) {
-            g2.fillRect(p.x, p.y, 1, 1); // 1px dot
+            g2.fillRect((p.x), (p.y), 1, 1); // 1px dot
         }
     }
     
@@ -28,7 +35,6 @@ public class GraphicPanel extends JPanel {
         pixels.add(new Point(x, y));
     }
     
-    // clear all pixels
     public void clearPixels() {
         pixels.clear();
         repaint();

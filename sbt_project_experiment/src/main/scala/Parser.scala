@@ -66,7 +66,7 @@ def parseSingleCommand(code: String): Either[String, Command] = parseAll(command
 }
 /* 
      Example: 
-    (CIRCLE (120 120) 30):
+    (CIRCLE (0 0) 70):
     (RECTANGLE (10 10) (400 400)):
     (LINE (10 10) (400 400)):
 
