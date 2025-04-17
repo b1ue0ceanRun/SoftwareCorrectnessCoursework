@@ -61,6 +61,13 @@ object Drawer {
     else {println("Error - your Bounding box is outside of the Drawing box.")} // TODO: show in errorWindow
   }
 
+  def drawFill(c: String): Unit = {
+      println(c)
+
+      // TODO: continue here
+
+  }
+
   // compute points along a circle using the midpoint algorithm
   def drawCircle(centerX: Int, centerY: Int, radius: Int): Unit = {
     var x = 0
@@ -116,6 +123,8 @@ object Drawer {
           Drawer.drawText(x, y, t)
         case BoundingBox(x0, y0, x1, y1) =>
           Drawer.drawBoundingBox(x0, y0, x1, y1)
+        case Fill(c) =>
+          Drawer.drawFill(c)
       }
 
       // update the GUI after each shape
@@ -143,23 +152,20 @@ object Drawer {
       val y1 = boundingBoxCoordinates(3)
       if (graphicPanel != null) {
         graphicPanel.clearPixels()
-
-        //val rightPixels = State.getPixels.filter(isInsideBox(_, x0, y0, x1, y1))
-
         State.getPixels.foreach { case (x, y) => if(isInsideBox((x, y), x0, y0, x1, y1))
           graphicPanel.addPixel(x, y)
         }
           graphicPanel.update()
         }
       }
-
 }
 
 
 // (CIRCLE (400 400) 30):
 /*
-(BOUNDINGBOX (10 10) (400 400)):
-(RECTANGLE (100 100) (450 450)):
-(CIRCLE (300 300) 300):
-
+(BOUNDINGBOX (10 10) (400 400))
+(RECTANGLE (100 100) (450 450)
+(CIRCLE (300 300) 300)
+(BOUNDINGBOX (10 10) (400 400))
+(FILL pink (CIRCLE (300 300) 300))
  */

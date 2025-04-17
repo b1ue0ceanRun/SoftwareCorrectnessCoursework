@@ -9,6 +9,7 @@ case class Rectangle(x1: Int, y1: Int, x2: Int, y2: Int) extends Command
 case class Line(x1: Int, y1: Int, x2: Int, y2:Int) extends Command
 case class TextAt(x: Int, y: Int, t: String) extends Command
 case class BoundingBox(x1: Int, y1: Int, x2: Int, y2: Int) extends Command
+case class Fill(c: String) extends Command
 
 // scala parsing resource
 object Parser extends RegexParsers {
@@ -55,8 +56,15 @@ object Parser extends RegexParsers {
       case _ ~ (x1, y1) ~ (x2, y2) => BoundingBox(x1, y1, x2, y2)
     }
 
+  def fill: Parser[Fill] =
+    //"(" ~> "FILL" ~ word ~ command <~ ")" ^^ {
+    //  case _ ~ c ~ (command) => Fill(c, command) //TODO: how to represent command in the parser
+    "(" ~> "FILL" ~ word <~ "):" ^^ {
+      case _ ~ c => Fill(c)
+    }
+
   // general command parser
-  def command: Parser[Command] = circle | line | rectangle | textAt | boundingBox
+  def command: Parser[Command] = circle | line | rectangle | textAt | boundingBox | fill
 
 
 def receiveCode(code: String): Either[String, List[Command]] = {
