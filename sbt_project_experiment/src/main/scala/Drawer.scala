@@ -1,8 +1,10 @@
 import javax.swing.SwingUtilities
+import scala.util.control.Breaks.break
 
 object Drawer {
   // panel ref
   private var graphicPanel: GraphicPanel = null
+  private var boundingBoxCoordinates: List[Int] = List.empty
   
   // set panel ref
   def setGraphicPanel(panel: GraphicPanel): Unit = {
@@ -51,16 +53,12 @@ object Drawer {
   }
 
   def drawBoundingBox(x0: Int, y0: Int, x1: Int, y1: Int): Unit = {
-    var isInside = true
-    if (x0 < 0 | y0 < 0 | x1 > 700 | y1 > 635){isInside = false}
-    if (graphicPanel != null) {println("You are already drawing")} // needs better condition, i.e. not to create the bounding box
-    // if there are already shapes + add that the other shapes can be only drawn where there is a boundingbox present
-    if(isInside){
+    if (x0 >= 0 & y0 >= 0 & x1 <= 700 & y1 <= 635) { // TODO: add error handling - case when we re-draw bounding box + show error in the error window
       drawRectangle(x0, y0, x1, y1)
+      boundingBoxCoordinates = List(x0, y0, x1, y1)
+      println(boundingBoxCoordinates)
     }
-    else {
-      println("Not inside the GraphicPanel")
-    } // display the messages inside the error window
+    else {println("Error - your Bounding box is outside of the Drawing box.")} // TODO: show in errorWindow
   }
 
   // compute points along a circle using the midpoint algorithm
@@ -124,22 +122,44 @@ object Drawer {
       SwingUtilities.invokeLater(() => updateGraphics())
 
       // wait before drawing the next one
-      Thread.sleep(500)
+      Thread.sleep(400)
     }
   }).start()
 }
 
   // sync panel with state
+    private def isInsideBox(Point: (Int, Int), x0:Int, y0:Int, x1:Int, y1:Int): Boolean = {
+      val x = Point._1
+      val y = Point._2
+
+      if(x >= x0 && x <= x1 && y >= y0 && y <= y1) {true}
+      else {false}
+    }
+
     private def updateGraphics(): Unit = {
-    if (graphicPanel != null) {
+      val x0 = boundingBoxCoordinates(0)
+      val y0 = boundingBoxCoordinates(1)
+      val x1 = boundingBoxCoordinates(2)
+      val y1 = boundingBoxCoordinates(3)
+      if (graphicPanel != null) {
         graphicPanel.clearPixels()
-        State.getPixels.foreach { case (x, y) =>
-        graphicPanel.addPixel(x, y)
+
+        //val rightPixels = State.getPixels.filter(isInsideBox(_, x0, y0, x1, y1))
+
+        State.getPixels.foreach { case (x, y) => if(isInsideBox((x, y), x0, y0, x1, y1))
+          graphicPanel.addPixel(x, y)
         }
-        graphicPanel.update()
-    }
-    }
+          graphicPanel.update()
+        }
+      }
+
 }
 
 
 // (CIRCLE (400 400) 30):
+/*
+(BOUNDINGBOX (10 10) (400 400)):
+(RECTANGLE (100 100) (450 450)):
+(CIRCLE (300 300) 300):
+
+ */

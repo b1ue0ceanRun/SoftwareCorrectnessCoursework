@@ -37,7 +37,8 @@ public class GraphicPanel extends JPanel {
     public void addPixel(int x, int y) {
         pixels.add(new Point(x, y));
     }
-    
+
+
     public void clearPixels() {
         pixels.clear();
         repaint();
