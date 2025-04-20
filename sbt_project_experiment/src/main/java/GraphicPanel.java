@@ -25,7 +25,6 @@ public class GraphicPanel extends JPanel {
         // flip y-axis so positive is up
         g2.scale(1, -1);
 
-
         // draw all pixels
         g2.setColor(Color.BLACK);
         for (Point p : pixels) {

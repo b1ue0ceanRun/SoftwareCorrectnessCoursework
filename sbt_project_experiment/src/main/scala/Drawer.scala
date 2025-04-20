@@ -1,3 +1,4 @@
+import java.awt.Color
 import javax.swing.SwingUtilities
 import scala.util.control.Breaks.break
 
@@ -48,7 +49,10 @@ object Drawer {
   }
 
   def drawText(x: Int, y: Int, t: String): Unit = {
-    // (TEXTAT (100 100) Hello):
+    /*
+    (BOUNDINGBOX (10 10) (400 400)):
+    (TEXTAT (100 100) Hello):
+     */
     println(s"Should show text $t on coordinates $x and $y")
   }
 
@@ -61,9 +65,9 @@ object Drawer {
     else {println("Error - your Bounding box is outside of the Drawing box.")} // TODO: show in errorWindow
   }
 
-  def drawFill(c: String): Unit = {
+  def drawFill(c: String, g: Command): Unit = {
       println(c)
-
+      println(g.toString)
       // TODO: continue here
 
   }
@@ -123,8 +127,9 @@ object Drawer {
           Drawer.drawText(x, y, t)
         case BoundingBox(x0, y0, x1, y1) =>
           Drawer.drawBoundingBox(x0, y0, x1, y1)
-        case Fill(c) =>
-          Drawer.drawFill(c)
+        case Fill(c, g) =>
+          Drawer.drawFill(c, g)
+
       }
 
       // update the GUI after each shape
@@ -145,6 +150,16 @@ object Drawer {
       else {false}
     }
 
+    def changeColor(c: String): Color = {
+      c match {
+        case "blue" => Color.BLUE
+        case "red" => Color.RED
+        case "green" => Color.GREEN
+        case "cyan" => Color.CYAN
+        case _ => Color.BLACK
+      }
+    }
+
     private def updateGraphics(): Unit = {
       val x0 = boundingBoxCoordinates(0)
       val y0 = boundingBoxCoordinates(1)
@@ -160,12 +175,23 @@ object Drawer {
       }
 }
 
+// input examples for testing:
 
-// (CIRCLE (400 400) 30):
 /*
-(BOUNDINGBOX (10 10) (400 400))
-(RECTANGLE (100 100) (450 450)
-(CIRCLE (300 300) 300)
-(BOUNDINGBOX (10 10) (400 400))
-(FILL pink (CIRCLE (300 300) 300))
+(BOUNDINGBOX (10 10) (400 400)):
+(RECTANGLE (100 100) (450 450)):
+(CIRCLE (300 300) 300):
+
+(BOUNDINGBOX (10 10) (400 400)):
+(FILL pink (CIRCLE (300 300) 300):): ERROR: "'):' expected but end of source found"
+ */
+
+/*
+(BOUNDINGBOX (10 10) (400 400)):
+(TEXTAT (100 100) Hello):
+*/
+
+/*
+(BOUNDINGBOX (10 10) (400 400)):
+(DRAW cyan (CIRCLE (300 300) 300):, (RECTANGLE (100 100) (450 450)):)
  */
