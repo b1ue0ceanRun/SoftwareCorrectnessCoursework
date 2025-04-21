@@ -24,8 +24,7 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
       case x ~ y => (x, y)
     }
 
-  def word: Parser[String] = rep("""[a-zA-Z_]+""".r) ^^ {_.toString} // TODO: empty spaces missing - now it adds a comma when there is a white space
-
+  def word: Parser[String] = """[a-zA-Z_][a-zA-Z0-9_%_|\s][0-9_*a-zA-Z_%|\s]+""".r ^^ {_.toString} // TODO: if number is first element of the word - now, it causes error
   def bool: Parser[Boolean] = """true|false""".r ^^ (_.toBoolean)
 
 
@@ -121,4 +120,24 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
   // (TEXTAT (100 100) Hello):
   (BOUNDINGBOX (10 10) (400 400)):
      */
+
+  /*
+  Pie chart:
+  (BOUNDINGBOX (10 10) (690 620)):
+  (CIRCLE (170 300) 150):
+  (TEXTAT (170 180) Cutest Animals):
+  (LINE (170 300) (320 300)):
+  (LINE (170 300) (170 150)):
+  (TEXTAT (320 150) Capybara):
+  (TEXTAT (245 225) c 25%):
+  (LINE (170 300) (290 390)):
+  (TEXTAT (320 390) Alpaca):
+  (TEXTAT (260 330) a 10%):
+  (LINE (170 300) (127 443)):
+  (TEXTAT (175 450) Sea Otter):
+  (TEXTAT (175 390) o 20%):
+  (TEXTAT (30 140) Seal):
+  (TEXTAT (35 300) s 45%):
+
+   */
 }
