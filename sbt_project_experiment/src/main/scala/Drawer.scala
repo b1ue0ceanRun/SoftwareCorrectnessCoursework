@@ -1,4 +1,4 @@
-import java.awt.Color
+import java.awt.{Color, Graphics2D}
 import javax.swing.SwingUtilities
 import scala.util.control.Breaks.break
 
@@ -6,6 +6,7 @@ object Drawer {
   // panel ref
   private var graphicPanel: GraphicPanel = null
   private var boundingBoxCoordinates: List[Int] = List.empty
+
   
   // set panel ref
   def setGraphicPanel(panel: GraphicPanel): Unit = {
@@ -53,6 +54,9 @@ object Drawer {
     (BOUNDINGBOX (10 10) (400 400)):
     (TEXTAT (100 100) Hello):
      */
+    graphicPanel.writeText(t, x, y)
+
+
     println(s"Should show text $t on coordinates $x and $y")
   }
 

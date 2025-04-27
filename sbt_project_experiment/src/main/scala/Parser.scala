@@ -24,7 +24,7 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
       case x ~ y => (x, y)
     }
 
-  def word: Parser[String] = """[a-zA-Z_][a-zA-Z0-9_%_|\s][0-9_*a-zA-Z_%|\s]+""".r ^^ {_.toString} // TODO: if number is first element of the word - now, it causes error
+  def word: Parser[String] = """[a-zA-Z_][a-zA-Z0-9_%_|\s][0-9_a-zA-Z_%|\s]*""".r ^^ {_.toString} // TODO: if number is first element of the word - now, it causes error
   def bool: Parser[Boolean] = """true|false""".r ^^ (_.toBoolean)
 
 
@@ -58,7 +58,7 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
     }
 
   def fill: Parser[Fill] = // TODO: fix
-    "(" ~> "FILL" ~ word ~ command <~ "):" ^^ {
+    "(" ~> "FILL" ~ word ~ circle <~ "):" ^^ {
       case _ ~ c ~ circle => Fill(c, circle)
       //case _ ~ c ~ rectangle => Fill(c, rectangle) //TODO: how to represent command in the parser
       //case _ ~ c ~ command => Fill(c, command)
@@ -75,7 +75,7 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
    */
 
   // general command parser
-  def command: Parser[Command] = circle | line | rectangle | textAt | boundingBox | fill | command
+  def command: Parser[Command] = circle | line | rectangle | textAt | boundingBox | fill | "(" ~> command <~ "):"
 
 
   def receiveCode(code: String): Either[String, List[Command]] = {

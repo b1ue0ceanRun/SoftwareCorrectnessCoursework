@@ -6,6 +6,7 @@ import java.util.List;
 public class GraphicPanel extends JPanel {
     // store pixels to draw
     private List<Point> pixels = new ArrayList<>();
+    private JLabel label = new JLabel();
     
     public GraphicPanel() {
         setBackground(Color.WHITE); 
@@ -25,11 +26,18 @@ public class GraphicPanel extends JPanel {
         // flip y-axis so positive is up
         g2.scale(1, -1);
 
+        writeText("Hello Seal", 40, 100);
         // draw all pixels
         g2.setColor(Color.BLACK);
         for (Point p : pixels) {
             g2.fillRect((p.x), (p.y), 1, 1); // 1px dot
         }
+    }
+
+    public void writeText(String t, int x, int y) {
+        label.setText(t);
+        label.setLocation(x, y);
+        add(label);
     }
     
     // add a pixel to draw
