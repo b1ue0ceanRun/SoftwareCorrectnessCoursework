@@ -6,10 +6,12 @@ import java.util.List;
 public class GraphicPanel extends JPanel {
     // store pixels to draw
     private List<Point> pixels = new ArrayList<>();
-    private JLabel label = new JLabel();
+    //private JLabel label = new JLabel();
     
     public GraphicPanel() {
-        setBackground(Color.WHITE); 
+        setBackground(Color.WHITE);
+        setLayout(null);
+        //add(label);
     }
     
     @Override // called on initial render and repaint
@@ -26,19 +28,25 @@ public class GraphicPanel extends JPanel {
         // flip y-axis so positive is up
         g2.scale(1, -1);
 
-        writeText("Hello Seal", 40, 100);
+        //writeText("Hello Seal", 400, 100);
         // draw all pixels
         g2.setColor(Color.BLACK);
+
         for (Point p : pixels) {
             g2.fillRect((p.x), (p.y), 1, 1); // 1px dot
         }
     }
 
     public void writeText(String t, int x, int y) {
+        JLabel label = new JLabel();
         label.setText(t);
-        label.setLocation(x, y);
+        Dimension labelSize = label.getPreferredSize();
+        label.setBounds(x, y, labelSize.width + 20, labelSize.height);
+        label.setForeground(Color.BLUE);
         add(label);
+        // the text is not erased after refreshing the window
     }
+
     
     // add a pixel to draw
     public void addPixel(int x, int y) {

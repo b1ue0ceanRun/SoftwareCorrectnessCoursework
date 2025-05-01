@@ -1,3 +1,7 @@
+import java.awt.Color
+import java.awt.image.BufferedImage
+import javax.swing.{JLabel, JPanel}
+
 object State {
    
   private var _drawingInstructions: List[Command] = List.empty
@@ -14,7 +18,18 @@ object State {
   def addPixel(x: Int, y: Int): Unit = {
     _pixels = _pixels :+ (x, y)
   }
-  
+
+  def addText(t: String, x: Int, y: Int): Unit = {
+    val smallPanel = new JPanel()
+    val label = new JLabel()
+    smallPanel.setBounds(x, y, x*10, y*10)
+    label.setText(t)
+    label.setLocation(x, y)
+    label.setForeground(Color.RED)
+    smallPanel.add(label)
+    smallPanel.add(label)
+  }
+
   // reset pixels
   def clearPixels(): Unit = {
     _pixels = List.empty

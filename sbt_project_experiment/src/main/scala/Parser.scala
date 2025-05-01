@@ -125,7 +125,7 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
   Pie chart:
   (BOUNDINGBOX (10 10) (690 620)):
   (CIRCLE (170 300) 150):
-  (TEXTAT (170 180) Cutest Animals):
+  (TEXTAT (170 100) Cutest Animals):
   (LINE (170 300) (320 300)):
   (LINE (170 300) (170 150)):
   (TEXTAT (320 150) Capybara):

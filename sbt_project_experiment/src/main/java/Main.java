@@ -53,7 +53,7 @@ public class Main {
         
         frame.add(mainPanel, BorderLayout.CENTER);
         frame.add(bottomPanel, BorderLayout.SOUTH);
-        frame.setLocationRelativeTo(null);
+        //frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         
         button.addActionListener(e -> {

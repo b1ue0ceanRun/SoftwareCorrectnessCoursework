@@ -54,8 +54,8 @@ object Drawer {
     (BOUNDINGBOX (10 10) (400 400)):
     (TEXTAT (100 100) Hello):
      */
+    //State.addText(t, x, y)
     graphicPanel.writeText(t, x, y)
-
 
     println(s"Should show text $t on coordinates $x and $y")
   }
