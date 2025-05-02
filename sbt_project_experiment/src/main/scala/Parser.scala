@@ -57,14 +57,7 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
       case _ ~ (x1, y1) ~ (x2, y2) => BoundingBox(x1, y1, x2, y2)
     }
 
-  def fill: Parser[Fill] = // TODO: fix
-    "(" ~> "FILL" ~ word ~ circle <~ "):" ^^ {
-      case _ ~ c ~ circle => Fill(c, circle)
-      //case _ ~ c ~ rectangle => Fill(c, rectangle) //TODO: how to represent command in the parser
-      //case _ ~ c ~ command => Fill(c, command)
-      //"(" ~> "FILL" ~ word <~ "):" ^^ {
-      //  case _ ~ c => Fill(c)
-    }
+
 
   /*
   def draw: Parser[Draw] =
@@ -75,26 +68,25 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
    */
 
   // general command parser
-  def command: Parser[Command] = circle | line | rectangle | textAt | boundingBox | fill | "(" ~> command <~ "):"
+  def command: Parser[Command] = circle | rectangle | line | textAt | boundingBox | fill 
 
-
-  def receiveCode(code: String): Either[String, List[Command]] = {
-    // split by colon and filter out empty entries, add : back, since parser expects it
-    val commands = code.split(":").map(_.trim).filter(_.nonEmpty).map(_ + ":") //TODO: do it without : ???
-    val results = commands.map(parseSingleCommand)
-
-    if (results.exists(_.isLeft)) {
-      // display first error
-      val firstError = results.collectFirst { case Left(msg) => msg }
-      println("hej! im your error")
-      Left(firstError.getOrElse("Unknown parsing error"))
-    } else {
-      val parsedCommands = results.collect { case Right(cmd) => cmd }.toList
-      parsedCommands.foreach(State.addInstruction)
-      Right(parsedCommands)
-
+  def fill: Parser[Fill] =
+    "(" ~> "FILL" ~ word ~ command <~ "):" ^^ {
+      case _ ~ c ~ g => Fill(c, g)
     }
+
+    // (FILL BLUE (CIRCLE (200 200) 70):):
+
+def receiveCode(code: String): Either[String, List[Command]] = {
+  parseAll(rep(command), code.trim) match {
+    case NoSuccess(msg, _) =>
+      Left(s"Parsing error: $msg")
+    case Success(result, _) =>
+      result.foreach(State.addInstruction) // optional side effect
+      Right(result)
+  }
 }
+
 
 // helper
   def parseSingleCommand(code: String): Either[String, Command] = parseAll(command, code.trim) match {

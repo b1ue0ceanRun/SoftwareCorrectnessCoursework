@@ -164,19 +164,35 @@ object Drawer {
       }
     }
 
-    private def updateGraphics(): Unit = {
-      val x0 = boundingBoxCoordinates(0)
-      val y0 = boundingBoxCoordinates(1)
-      val x1 = boundingBoxCoordinates(2)
-      val y1 = boundingBoxCoordinates(3)
-      if (graphicPanel != null) {
-        graphicPanel.clearPixels()
-        State.getPixels.foreach { case (x, y) => if(isInsideBox((x, y), x0, y0, x1, y1))
-          graphicPanel.addPixel(x, y)
+private def updateGraphics(): Unit = {
+    if (graphicPanel != null) {
+      graphicPanel.clearPixels()
+
+      val pixels = State.getPixels
+
+      if (boundingBoxCoordinates.length >= 4) {
+        val x0 = boundingBoxCoordinates(0)
+        val y0 = boundingBoxCoordinates(1)
+        val x1 = boundingBoxCoordinates(2)
+        val y1 = boundingBoxCoordinates(3)
+
+        pixels.foreach {
+          case (x, y) =>
+            if (isInsideBox((x, y), x0, y0, x1, y1))
+              graphicPanel.addPixel(x, y)
         }
-          graphicPanel.update()
+      } else {
+        // No bounding box, draw all pixels
+        pixels.foreach {
+          case (x, y) =>
+            graphicPanel.addPixel(x, y)
         }
       }
+
+      graphicPanel.update()
+    }
+  }
+
 }
 
 // input examples for testing:
