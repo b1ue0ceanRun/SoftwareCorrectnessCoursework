@@ -7,6 +7,7 @@ public class GraphicPanel extends JPanel {
     // store pixels to draw
     private List<Point> pixels = new ArrayList<>();
     //private JLabel label = new JLabel();
+    private List<JLabel> labels = new ArrayList<>();
     
     public GraphicPanel() {
         setBackground(Color.WHITE);
@@ -44,7 +45,16 @@ public class GraphicPanel extends JPanel {
         label.setBounds(x, y, labelSize.width + 20, labelSize.height);
         label.setForeground(Color.BLUE);
         add(label);
+        labels.add(label);
         // the text is not erased after refreshing the window
+    }
+
+    public void deleteText() {
+        //removeAll();
+        //for (JLabel l : labels) {
+         //   remove(l);
+        //}
+        //repaint();
     }
 
     
@@ -60,6 +70,7 @@ public class GraphicPanel extends JPanel {
     }
     
     public void update() {
+        this.revalidate();
         this.repaint();
     }
     // Drawing:
