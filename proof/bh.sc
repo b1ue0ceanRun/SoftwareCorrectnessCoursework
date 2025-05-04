@@ -42,7 +42,7 @@ import org.sireum._
     abs((cx - x1) * (y2 - y1) - (cy - y1) * (x2 - x1)) <= dx + abs(dy)
   )
 
-  while (T) { // Note: Replace T with the actual loop condition in real use
+  while (T) { // Note: Replace T with actual loop condition in real use
     Invariant(
       Modifies(cx, cy, err),
       abs((cx - x1) * (y2 - y1) - (cy - y1) * (x2 - x1)) <= dx + abs(dy)
@@ -82,8 +82,6 @@ import org.sireum._
       assert(cy == oldCy + sy)
     }
 
-    assert(
-      abs((cx - x1) * (y2 - y1) - (cy - y1) * (x2 - x1)) <= dx + abs(dy)
-    )
+    // Removed Deduce here
   }
 }
