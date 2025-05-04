@@ -1,0 +1,116 @@
+Drawing:
+(LINE (0 0) (700 635)):
+(LINE (700 0) (0 635)):
+(LINE (350 0) (350 700)):
+(LINE (0 317) (700 317)):
+(CIRCLE (350 317) 50):
+(CIRCLE (350 317) 100):
+(CIRCLE (350 317) 150):
+(LINE (280 700) (700 317)):
+(LINE (700 317) (350 0)):
+(LINE (350 0) (0 317)):
+(LINE (0 317) (420 700)):
+(RECTANGLE (200 140) (500 500)):
+
+Pie chart:
+(BOUNDINGBOX (10 10) (690 620)):
+(CIRCLE (170 300) 150):
+(TEXTAT (170 100) Cutest Animals):
+(LINE (170 300) (320 300)):
+(LINE (170 300) (170 150)):
+(TEXTAT (320 150) Capybara):
+(TEXTAT (245 225) c 25%):
+(LINE (170 300) (290 390)):
+(TEXTAT (320 390) Alpaca):
+(TEXTAT (260 330) a 10%):
+(LINE (170 300) (127 443)):
+(TEXTAT (175 450) Sea Otter):
+(TEXTAT (175 390) o 20%):
+(TEXTAT (30 140) Seal):
+(TEXTAT (35 300) s 45%):
+
+
+examples:
+
+(BOUNDINGBOX (10 10) (400 400)):
+(DRAW cyan (CIRCLE (300 300) 300):, (RECTANGLE (100 100) (450 450)):)
+
+(BOUNDINGBOX (10 10) (400 400)):
+(DRAW cyan (CIRCLE (300 300) 300):):
+
+(BOUNDINGBOX (10 10) (690 620)):
+(FILL red (CIRCLE (170 300) 150):):
+
+(BOUNDINGBOX (10 10) (400 400)):
+(TEXTAT (100 100) Hello):
+
+(BOUNDINGBOX (10 10) (400 400)):
+(RECTANGLE (100 100) (450 450)):
+(CIRCLE (300 300) 300):
+(DRAW cyan (CIRCLE (300 300) 30):):
+
+(BOUNDINGBOX (10 10) (400 400)):
+(FILL pink (CIRCLE (300 300) 300):):
+
+
+(BOUNDINGBOX (10 10) (400 400)):
+(TEXTAT (100 100) Hello There):
+
+(BOUNDINGBOX (10 10) (400 400)):
+(DRAW cyan (CIRCLE (300 300) 300):, (RECTANGLE (100 100) (450 450)):)
+
+(FILL BLUE (CIRCLE (200 200) 70):):
+
+(CIRCLE (0 0) 70):
+(RECTANGLE (10 10) (400 400)):
+(LINE (10 10) (400 400)):
+
+(CIRCLE (120 120) 30):
+(RECTANGLE (10 10) (400 400)):
+(LINE (10 10) (400 400)):
+(TEXTAT (100 100) Hello):
+(BOUNDINGBOX (10 10) (400 400)):
+
+(BOUNDINGBOX (10 10) (690 620)):
+(CIRCLE (170 300) 150):
+(TEXTAT (170 100) Cutest Animals):
+
+
+
+Pie chart:
+(BOUNDINGBOX (10 10) (690 620)):
+(CIRCLE (170 300) 150):
+(TEXTAT (170 100) Cutest Animals):
+(LINE (170 300) (320 300)):
+(LINE (170 300) (170 150)):
+(TEXTAT (320 150) Capybara):
+(TEXTAT (245 225) c 25%):
+(LINE (170 300) (290 390)):
+(TEXTAT (320 390) Alpaca):
+(TEXTAT (260 330) a 10%):
+(LINE (170 300) (127 443)):
+(TEXTAT (175 450) Sea Otter):
+(TEXTAT (175 390) o 20%):
+(TEXTAT (30 140) Seal):
+(TEXTAT (35 300) s 45%):
+
+(LINE (0 0) (700 635)): the line goes from left bottom to right corner
+(LINE (700 0) (0 635)): the line going from left top to right bottom
+(LINE (350 0) (350 700)): vertical line going through center
+(LINE (0 317) (700 317)): horizontal line going through center
+
+Drawing:
+(LINE (0 0) (700 635)):
+(LINE (700 0) (0 635)):
+(LINE (350 0) (350 700)):
+(LINE (0 317) (700 317)):
+(CIRCLE (350 317) 50):
+(CIRCLE (350 317) 100):
+(CIRCLE (350 317) 150):
+(LINE (280 700) (700 317)):
+(LINE (700 317) (350 0)):
+(LINE (350 0) (0 317)):
+(LINE (0 317) (420 700)):
+(RECTANGLE (200 140) (500 500)):
+
+

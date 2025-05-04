@@ -10,7 +10,8 @@ case class Line(x1: Int, y1: Int, x2: Int, y2:Int) extends Command
 case class TextAt(x: Int, y: Int, t: String) extends Command
 case class BoundingBox(x1: Int, y1: Int, x2: Int, y2: Int) extends Command
 case class Fill(c: String, g: Command) extends Command
-case class Draw(c: String, commands: List[Command]) extends Command
+//case class Draw(c: String, commands: List[Command]) extends Command
+case class Draw(c: String, command: Command) extends Command
 
 // scala parsing resource
 object Parser extends RegexParsers { //TODO: error about handling whitespace ???
@@ -57,34 +58,28 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
       case _ ~ (x1, y1) ~ (x2, y2) => BoundingBox(x1, y1, x2, y2)
     }
 
-
-
-  /*
-  def draw: Parser[Draw] =
+  def draw: Parser[Draw] = //TODO: support for list of Commands
     "(" ~> "DRAW" ~ word ~ command <~ "):" ^^ {
-      case _ ~ c ~ commands => Draw(c, commands)
+      case _ ~ c ~ g => Draw(c, g)
     }
 
-   */
-
   // general command parser
-  def command: Parser[Command] = circle | rectangle | line | textAt | boundingBox | fill 
+  def command: Parser[Command] = circle | rectangle | line | textAt | boundingBox | fill | draw
 
   def fill: Parser[Fill] =
     "(" ~> "FILL" ~ word ~ command <~ "):" ^^ {
       case _ ~ c ~ g => Fill(c, g)
     }
 
-    // (FILL BLUE (CIRCLE (200 200) 70):):
 
-def receiveCode(code: String): Either[String, List[Command]] = {
-  parseAll(rep(command), code.trim) match {
-    case NoSuccess(msg, _) =>
-      Left(s"Parsing error: $msg")
-    case Success(result, _) =>
-      result.foreach(State.addInstruction) // optional side effect
-      Right(result)
-  }
+  def receiveCode(code: String): Either[String, List[Command]] = {
+    parseAll(rep(command), code.trim) match {
+      case NoSuccess(msg, _) =>
+        Left(s"Parsing error: $msg")
+      case Success(result, _) =>
+        result.foreach(State.addInstruction) // optional side effect
+        Right(result)
+    }
 }
 
 
@@ -95,41 +90,4 @@ def receiveCode(code: String): Either[String, List[Command]] = {
 
   }
 
-  //def parseMultipleComands(code: String): Either[List[String], List[Command]] = TODO
-
-
-
-
-/*
-     Example:
-    (CIRCLE (0 0) 70):
-    (RECTANGLE (10 10) (400 400)):
-    (LINE (10 10) (400 400)):
-
-  // Example: (CIRCLE (120 120) 30):
-  // (RECTANGLE (10 10) (400 400)):
-  // (LINE (10 10) (400 400)):
-  // (TEXTAT (100 100) Hello):
-  (BOUNDINGBOX (10 10) (400 400)):
-     */
-
-  /*
-  Pie chart:
-  (BOUNDINGBOX (10 10) (690 620)):
-  (CIRCLE (170 300) 150):
-  (TEXTAT (170 100) Cutest Animals):
-  (LINE (170 300) (320 300)):
-  (LINE (170 300) (170 150)):
-  (TEXTAT (320 150) Capybara):
-  (TEXTAT (245 225) c 25%):
-  (LINE (170 300) (290 390)):
-  (TEXTAT (320 390) Alpaca):
-  (TEXTAT (260 330) a 10%):
-  (LINE (170 300) (127 443)):
-  (TEXTAT (175 450) Sea Otter):
-  (TEXTAT (175 390) o 20%):
-  (TEXTAT (30 140) Seal):
-  (TEXTAT (35 300) s 45%):
-
-   */
 }

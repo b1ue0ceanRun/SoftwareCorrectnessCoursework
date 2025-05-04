@@ -6,10 +6,12 @@ object State {
    
   private var _drawingInstructions: List[Command] = List.empty
   private var _pixels: List[(Int, Int)] = List.empty
+
   
   def getState: List[Command] = _drawingInstructions
   def getPixels: List[(Int, Int)] = _pixels
-  
+
+
   def addInstruction(instruction: Command): Unit = {
     _drawingInstructions = _drawingInstructions :+ instruction
   }
@@ -19,16 +21,6 @@ object State {
     _pixels = _pixels :+ (x, y)
   }
 
-  def addText(t: String, x: Int, y: Int): Unit = {
-    val smallPanel = new JPanel()
-    val label = new JLabel()
-    smallPanel.setBounds(x, y, x*10, y*10)
-    label.setText(t)
-    label.setLocation(x, y)
-    label.setForeground(Color.RED)
-    smallPanel.add(label)
-    smallPanel.add(label)
-  }
 
   // reset pixels
   def clearPixels(): Unit = {
