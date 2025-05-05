@@ -114,36 +114,18 @@ object Drawer {
 }
   
   def drawSequence(): Unit = {
-  new Thread(() => {
-    // clear panel & pixel state before starting
-    SwingUtilities.invokeLater(() => graphicPanel.clearPixels())
-    State.clearPixels()
+    new Thread(() => {
+      SwingUtilities.invokeLater(() => graphicPanel.clearPixels())
+      State.clearPixels()
 
-    for (instruction <- State.getState) {
-      instruction match {
-        case Circle(x, y, r) =>
-          Drawer.drawCircle(x, y, r)
-        case Line(x0, y0, x1, y1) =>
-          Drawer.drawLine(x0, y0, x1, y1)
-        case Rectangle(x0, y0, x1, y1) =>
-          Drawer.drawRectangle(x0, y0, x1, y1)
-        case TextAt(x, y, t) =>
-          Drawer.drawText(x, y, t)
-        case BoundingBox(x0, y0, x1, y1) =>
-          Drawer.drawBoundingBox(x0, y0, x1, y1)
-        case Fill(c, g) =>
-          Drawer.drawFill(c, g)
+      for (instruction <- State.getState) {
+        renderCommand(instruction)
 
+        SwingUtilities.invokeLater(() => updateGraphics())
+        Thread.sleep(400)
       }
-
-      // update the GUI after each shape
-      SwingUtilities.invokeLater(() => updateGraphics())
-
-      // wait before drawing the next one
-      Thread.sleep(400)
-    }
-  }).start()
-}
+    }).start()
+  }
 
   // sync panel with state
     private def isInsideBox(Point: (Int, Int), x0:Int, y0:Int, x1:Int, y1:Int): Boolean = {
@@ -193,7 +175,28 @@ private def updateGraphics(): Unit = {
     }
   }
 
+  
+def renderCommand(cmd: Command): Unit = {
+  cmd match {
+    case Circle(x, y, r) =>
+      drawCircle(x, y, r)
+    case Line(x0, y0, x1, y1) =>
+      drawLine(x0, y0, x1, y1)
+    case Rectangle(x0, y0, x1, y1) =>
+      drawRectangle(x0, y0, x1, y1)
+    case TextAt(x, y, t) =>
+      drawText(x, y, t)
+    case BoundingBox(x0, y0, x1, y1) =>
+      drawBoundingBox(x0, y0, x1, y1)
+    case Fill(c, g) =>
+      drawFill(c, g)
+    case Draw(color, cmds) =>
+      cmds.foreach(renderCommand)
+  }
 }
+
+}
+
 
 // input examples for testing:
 

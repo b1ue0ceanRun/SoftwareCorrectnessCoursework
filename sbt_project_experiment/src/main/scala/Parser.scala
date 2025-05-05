@@ -56,19 +56,11 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
     "(" ~> "BOUNDINGBOX" ~ point ~ point <~ "):" ^^ {
       case _ ~ (x1, y1) ~ (x2, y2) => BoundingBox(x1, y1, x2, y2)
     }
+  
 
-
-
-  /*
-  def draw: Parser[Draw] =
-    "(" ~> "DRAW" ~ word ~ command <~ "):" ^^ {
-      case _ ~ c ~ commands => Draw(c, commands)
-    }
-
-   */
 
   // general command parser
-  def command: Parser[Command] = circle | rectangle | line | textAt | boundingBox | fill 
+  def command: Parser[Command] = circle | rectangle | line | textAt | boundingBox | fill | draw
 
   def fill: Parser[Fill] =
     "(" ~> "FILL" ~ word ~ command <~ "):" ^^ {
@@ -76,6 +68,13 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
     }
 
     // (FILL BLUE (CIRCLE (200 200) 70):):
+
+  def draw: Parser[Draw] =
+  "(" ~> "DRAW" ~ word ~ rep(command) <~ "):" ^^ {
+    case _ ~ c ~ cmds => Draw(c, cmds)
+  }
+  // (DRAW RED (CIRCLE (100 100) 30): (LINE (10 10) (200 200)): ):
+
 
 def receiveCode(code: String): Either[String, List[Command]] = {
   parseAll(rep(command), code.trim) match {
@@ -86,19 +85,6 @@ def receiveCode(code: String): Either[String, List[Command]] = {
       Right(result)
   }
 }
-
-
-// helper
-  def parseSingleCommand(code: String): Either[String, Command] = parseAll(command, code.trim) match {
-    case NoSuccess(msg, _) => Left(msg)
-    case Success(result, _) => Right(result)
-
-  }
-
-  //def parseMultipleComands(code: String): Either[List[String], List[Command]] = TODO
-
-
-
 
 /*
      Example:
