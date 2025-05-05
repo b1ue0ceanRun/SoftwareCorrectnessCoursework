@@ -1,0 +1,61 @@
+```plantuml
+@startuml Drawing Application Architecture
+
+' Define simplified classes
+class Main {
+  +JTextArea codeEditor
+  +JButton renderButton
+  +GraphicPanel graphicsView
+}
+
+class GraphicPanel {
+  -pixels: List<Point>
+  +addPixel(x: int, y: int)
+  +writeText(text: String, x: int, y: int)
+  +clearPixels()
+  +update()
+}
+
+class Parser {
+  +receiveCode(code: String): Either<String, List<Command>>
+}
+
+class Drawer {
+  +drawSequence()
+  +renderCommand(cmd: Command)
+}
+
+class State {
+  -_drawingInstructions: List<Command>
+  -_pixels: List<(Int, Int)>
+  +addInstruction(instruction: Command)
+  +addPixel(x: Int, y: Int)
+}
+
+interface Command {}
+
+class Circle extends Command {}
+class Rectangle extends Command {}
+class Line extends Command {}
+class TextAt extends Command {}
+class BoundingBox extends Command {}
+class Fill extends Command {}
+class Draw extends Command {}
+
+' Define key relationships
+Main --> GraphicPanel: creates
+Main --> Parser: sends code to parser
+Main --> State: clears before new render
+Main --> Drawer: triggers drawing sequence
+
+Parser --> Command: parses text into
+Parser --> State: adds instructions to
+
+Drawer --> GraphicPanel: renders to
+Drawer --> State: reads commands from
+Drawer --> Command: renders
+
+State --> Command: stores
+
+@enduml
+```
