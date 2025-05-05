@@ -64,11 +64,13 @@ public class Main {
             State$.MODULE$.clearPixels();       // clear pixels
             errorWindow.setText("");            // clear error window
             errorWindow.setBackground(Color.LIGHT_GRAY);
+            codeEditor.setBackground(Color.WHITE);
             
             Either result = Parser$.MODULE$.receiveCode(code);
             
             if (result.isRight()) {
                 Drawer$.MODULE$.drawSequence();
+                codeEditor.setBackground(Color.CYAN);
             } else {
                 String errorMsg = result.left().get().toString();
                 errorWindow.setBackground(Color.RED);

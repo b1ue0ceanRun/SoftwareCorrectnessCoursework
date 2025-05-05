@@ -6,7 +6,7 @@ object Drawer {
   // panel ref
   private var graphicPanel: GraphicPanel = null
   private var boundingBoxCoordinates: List[Int] = List.empty
-  private var color: Color = null
+  private var color: Color = Color.BLACK
 
   
   // set panel ref
@@ -72,19 +72,18 @@ object Drawer {
 
   def changeColor(c: String): Unit = {
     c.trim match { //TODO: does not change the var color
-      case "blue" => color = Color.BLUE
-      case "red" => color = Color.RED
-      case "green" => color = Color.GREEN
-      case "cyan" => color = Color.CYAN
-      case "pink" => color = Color.PINK
-      case "violet" => color = Color.MAGENTA
+      case "BLUE" => color = Color.BLUE
+      case "RED" => color = Color.RED
+      case "GREEN" => color = Color.GREEN
+      case "CYAN" => color = Color.CYAN
+      case "PINK" => color = Color.PINK
+      case "VIOLET" => color = Color.MAGENTA
       case _ => color = Color.BLACK
     }
   }
 
   def drawFill(c: String, g: Command): Unit = {
       // TODO: continue here - use is insideBox maybe
-      //color = changeColor(c) // it does not change the color
       changeColor(c)
       g match {
         case Circle(x, y, r) => Drawer.drawCircle(x, y, r)
@@ -216,27 +215,4 @@ def renderCommand(cmd: Command): Unit = {
       cmds.foreach(renderCommand)
   }
 }
-
 }
-
-
-// input examples for testing:
-
-/*
-(BOUNDINGBOX (10 10) (400 400)):
-(RECTANGLE (100 100) (450 450)):
-(CIRCLE (300 300) 300):
-
-(BOUNDINGBOX (10 10) (400 400)):
-(FILL pink (CIRCLE (300 300) 300):): ERROR: "'):' expected but end of source found"
- */
-
-/*
-(BOUNDINGBOX (10 10) (400 400)):
-(TEXTAT (100 100) Hello):
-*/
-
-/*
-(BOUNDINGBOX (10 10) (400 400)):
-(DRAW cyan (CIRCLE (300 300) 300):, (RECTANGLE (100 100) (450 450)):)
- */

@@ -86,36 +86,4 @@ def receiveCode(code: String): Either[String, List[Command]] = {
   }
 }
 
-/*
-     Example:
-    (CIRCLE (0 0) 70):
-    (RECTANGLE (10 10) (400 400)):
-    (LINE (10 10) (400 400)):
-
-  // Example: (CIRCLE (120 120) 30):
-  // (RECTANGLE (10 10) (400 400)):
-  // (LINE (10 10) (400 400)):
-  // (TEXTAT (100 100) Hello):
-  (BOUNDINGBOX (10 10) (400 400)):
-     */
-
-  /*
-  Pie chart:
-  (BOUNDINGBOX (10 10) (690 620)):
-  (CIRCLE (170 300) 150):
-  (TEXTAT (170 100) Cutest Animals):
-  (LINE (170 300) (320 300)):
-  (LINE (170 300) (170 150)):
-  (TEXTAT (320 150) Capybara):
-  (TEXTAT (245 225) c 25%):
-  (LINE (170 300) (290 390)):
-  (TEXTAT (320 390) Alpaca):
-  (TEXTAT (260 330) a 10%):
-  (LINE (170 300) (127 443)):
-  (TEXTAT (175 450) Sea Otter):
-  (TEXTAT (175 390) o 20%):
-  (TEXTAT (30 140) Seal):
-  (TEXTAT (35 300) s 45%):
-
-   */
 }
