@@ -6,12 +6,19 @@ object Drawer {
   // panel ref
   private var graphicPanel: GraphicPanel = null
   private var boundingBoxCoordinates: List[Int] = List.empty
+  private var color: Color = null
 
   
   // set panel ref
   def setGraphicPanel(panel: GraphicPanel): Unit = {
     graphicPanel = panel
   }
+
+
+  def setColor(c: Color): Unit = {
+    color = c
+  }
+
   
   def drawPixel(x: Int, y: Int): Unit = {
     // add to state
@@ -50,13 +57,7 @@ object Drawer {
   }
 
   def drawText(x: Int, y: Int, t: String): Unit = {
-    /*
-    (BOUNDINGBOX (10 10) (400 400)):
-    (TEXTAT (100 100) Hello):
-     */
-    //State.addText(t, x, y)
     graphicPanel.writeText(t, x, y)
-
     println(s"Should show text $t on coordinates $x and $y")
   }
 
@@ -64,16 +65,48 @@ object Drawer {
     if (x0 >= 0 & y0 >= 0 & x1 <= 700 & y1 <= 635) { // TODO: add error handling - case when we re-draw bounding box + show error in the error window
       drawRectangle(x0, y0, x1, y1)
       boundingBoxCoordinates = List(x0, y0, x1, y1)
-      println(boundingBoxCoordinates)
+      color = Color.BLACK
     }
     else {println("Error - your Bounding box is outside of the Drawing box.")} // TODO: show in errorWindow
   }
 
-  def drawFill(c: String, g: Command): Unit = {
-      println(c)
-      println(g.toString)
-      // TODO: continue here
+  def changeColor(c: String): Unit = {
+    c.trim match { //TODO: does not change the var color
+      case "blue" => color = Color.BLUE
+      case "red" => color = Color.RED
+      case "green" => color = Color.GREEN
+      case "cyan" => color = Color.CYAN
+      case "pink" => color = Color.PINK
+      case "violet" => color = Color.MAGENTA
+      case _ => color = Color.BLACK
+    }
+  }
 
+  def drawFill(c: String, g: Command): Unit = {
+      // TODO: continue here - use is insideBox maybe
+      //color = changeColor(c) // it does not change the color
+      changeColor(c)
+      g match {
+        case Circle(x, y, r) => Drawer.drawCircle(x, y, r)
+        case Rectangle(x1, y1, x2, y2) => Drawer.drawRectangle(x1, y1, x2, y2)
+      }
+  }
+
+  def drawDraw(c: String, g: Command): Unit = { //TODO: g: List[Command]
+    //color = changeColor(c)
+    changeColor(c)
+    //val i: Int = g.length
+    //g(i)
+    g match {
+      case Circle(x, y, r) => Drawer.drawCircle(x, y, r)
+      case Rectangle(x1, y1, x2, y2) => Drawer.drawRectangle(x1, y1, x2, y2)
+      case Line(x1, y1, x2, y2) => Drawer.drawLine(x1, y1, x2, y2)
+      case _ => Drawer.drawDraw(c, g)
+    }
+  }
+  def getColor(): Color = {
+    println(color)
+    color
   }
 
   // compute points along a circle using the midpoint algorithm
@@ -136,44 +169,33 @@ object Drawer {
       else {false}
     }
 
-    def changeColor(c: String): Color = {
-      c match {
-        case "blue" => Color.BLUE
-        case "red" => Color.RED
-        case "green" => Color.GREEN
-        case "cyan" => Color.CYAN
-        case _ => Color.BLACK
-      }
-    }
+  private def updateGraphics(): Unit = {
+      if (graphicPanel != null) {
+        graphicPanel.clearPixels()
 
-private def updateGraphics(): Unit = {
-    if (graphicPanel != null) {
-      graphicPanel.clearPixels()
+        val pixels = State.getPixels
 
-      val pixels = State.getPixels
+        if (boundingBoxCoordinates.length >= 4) {
+          val x0 = boundingBoxCoordinates(0)
+          val y0 = boundingBoxCoordinates(1)
+          val x1 = boundingBoxCoordinates(2)
+          val y1 = boundingBoxCoordinates(3)
 
-      if (boundingBoxCoordinates.length >= 4) {
-        val x0 = boundingBoxCoordinates(0)
-        val y0 = boundingBoxCoordinates(1)
-        val x1 = boundingBoxCoordinates(2)
-        val y1 = boundingBoxCoordinates(3)
-
-        pixels.foreach {
-          case (x, y) =>
-            if (isInsideBox((x, y), x0, y0, x1, y1))
+          pixels.foreach {
+            case (x, y) =>
+              if (isInsideBox((x, y), x0, y0, x1, y1))
+                graphicPanel.addPixel(x, y)
+          }
+        } else {
+          // No bounding box, draw all pixels
+          pixels.foreach {
+            case (x, y) =>
               graphicPanel.addPixel(x, y)
+          }
         }
-      } else {
-        // No bounding box, draw all pixels
-        pixels.foreach {
-          case (x, y) =>
-            graphicPanel.addPixel(x, y)
-        }
+        graphicPanel.update()
       }
-
-      graphicPanel.update()
     }
-  }
 
   
 def renderCommand(cmd: Command): Unit = {
