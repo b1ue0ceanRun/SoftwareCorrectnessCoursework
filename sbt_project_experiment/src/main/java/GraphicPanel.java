@@ -19,9 +19,9 @@ public class GraphicPanel extends JPanel {
         super.paintComponent(g); // default initialisation
         var g2 = (Graphics2D) g; // cast to advanced graphic resource
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
         // move origo to bottom left: -65 is the height of the error window
         g2.translate(0, (Main.FRAME_HEIGHT - 65));
-
         // flip y-axis so positive is up
         g2.scale(1, -1);
 

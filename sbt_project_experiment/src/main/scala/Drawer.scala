@@ -187,6 +187,7 @@ object Drawer {
           }
         } else {
           // No bounding box, draw all pixels
+          boundingBoxCoordinates = List.empty
           pixels.foreach {
             case (x, y) =>
               graphicPanel.addPixel(x, y)
@@ -212,6 +213,7 @@ def renderCommand(cmd: Command): Unit = {
     case Fill(c, g) =>
       drawFill(c, g)
     case Draw(color, cmds) =>
+      changeColor(color)
       cmds.foreach(renderCommand)
   }
 }
