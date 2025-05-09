@@ -62,7 +62,7 @@ object Drawer {
   }
 
   def drawBoundingBox(x0: Int, y0: Int, x1: Int, y1: Int): Unit = {
-    if (x0 >= 0 & y0 >= 0 & x1 <= 700 & y1 <= 635) { // TODO: add error handling - case when we re-draw bounding box + show error in the error window
+    if (x0 >= 0 & y0 >= 0 & x1 <= 698 & y1 <= 634) { // TODO: add error handling - case when we re-draw bounding box + show error in the error window
       drawRectangle(x0, y0, x1, y1)
       boundingBoxCoordinates = List(x0, y0, x1, y1)
       color = Color.BLACK

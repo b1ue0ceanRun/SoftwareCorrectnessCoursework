@@ -13,7 +13,7 @@ case class Fill(c: String, g: Command) extends Command
 case class Draw(c: String, commands: List[Command]) extends Command
 
 // scala parsing resource
-object Parser extends RegexParsers { //TODO: error about handling whitespace ???
+object Parser extends RegexParsers {
     
   // define number as possibly negative, multiple digits and a decimal part and map to int
   def number: Parser[Int] = """-?\d+""".r ^^ (_.toInt)
@@ -56,11 +56,7 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
     "(" ~> "BOUNDINGBOX" ~ point ~ point <~ "):" ^^ {
       case _ ~ (x1, y1) ~ (x2, y2) => BoundingBox(x1, y1, x2, y2)
     }
-  
 
-
-  // general command parser
-  def command: Parser[Command] = circle | rectangle | line | textAt | boundingBox | fill | draw
 
   def fill: Parser[Fill] =
     "(" ~> "FILL" ~ word ~ command <~ "):" ^^ {
@@ -75,6 +71,8 @@ object Parser extends RegexParsers { //TODO: error about handling whitespace ???
   }
   // (DRAW RED (CIRCLE (100 100) 30): (LINE (10 10) (200 200)): ):
 
+  // general command parser
+  def command: Parser[Command] = circle | rectangle | line | textAt | boundingBox | fill | draw
 
 def receiveCode(code: String): Either[String, List[Command]] = {
   parseAll(rep(command), code.trim) match {
