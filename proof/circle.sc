@@ -1,6 +1,5 @@
 // #Sireum #Logika
 import org.sireum._
-import org.sireum.justification._
 
 //distSq <= radius*radius + 1 & distSq >= radius*radius - 1
 
@@ -17,10 +16,8 @@ assume(radius > 0 & radius < 20)
 def drawPixel(a: Z, b: Z, x: Z, y: Z): Unit = {
   Contract(
     Requires(
-      (a == cx + x || a == cx - x || a == cx + y || a == cx - y) &&
-      (b == cy + y || b == cy - y || b == cy + x || b == cy - x),
-      x >= 0,
-      y >= 0,
+      (a == cx + x | a == cx - x | a == cx + y | a == cx - y) &
+      (b == cy + y | b == cy - y | b == cy + x | b == cy - x),
       y <= radius
     )
   )
