@@ -1,0 +1,38 @@
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(ParserTest, org.scalatest.tools.Framework$$anon$1@51f50ed9, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(DrawerTest, org.scalatest.tools.Framework$$anon$1@51f50ed9, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(StateTest, org.scalatest.tools.Framework$$anon$1@51f50ed9, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mStateTest:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- Initial state is empty *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  List((0, 0), (1, 0), (2, 0), (3, 0)) was not empty (StateTest.scala:10)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- addInstruction adds a command to state[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- addPixel adds pixel coordinates[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- clearPixels clears the pixel list[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- clearInstructions clears the command list[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- addText does not throw exception[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mParserTest:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Parse Circle[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Parse Rectangle[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Parse Line[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Parse TextAt[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Parse BoundingBox[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Parse Fill[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Parse Draw[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- ReceiveCode returns Right with valid input[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- ReceiveCode returns Left with invalid input[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mDrawerTest:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- drawLine adds correct number of pixels[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- drawCircle plots symmetric pixels[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- changeColor sets correct color[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- drawFill calls shape-specific methods[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- renderCommand dispatches based on type[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 383 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 20[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 3, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 19, failed 1, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m*** 1 TEST FAILED ***[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ParserTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DrawerTest[0m
+[0m[[0m[31merror[0m] [0m[0mFailed tests:[0m
+[0m[[0m[31merror[0m] [0m[0m	StateTest[0m
+[0m[[0m[31merror[0m] [0m[0m(Test / [31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m
