@@ -11,14 +11,6 @@ Deduce(|- (radius >= 0))
 
 val delta: Z = 10
 
-/* Contract(  
-  Requires(  
-    // must be within delta units of radius^2  
-    ((a - cx) * (a - cx)) + (( b - cy) * ( b - cy)) >= radius * radius - delta &  
-      ((a - cx) * (a - cx)) + (( b - cy) * ( b - cy)) <= radius * radius + delta  
-  ),  
-  Ensures( Res == (a - cx)*(a - cx) + (b - cy)*(b - cy)))
- */
 
 /*
 Contract(
@@ -104,3 +96,4 @@ def drawCircle(): Unit = {
     Deduce(|- (!(x < y)))
 
   }
+  
