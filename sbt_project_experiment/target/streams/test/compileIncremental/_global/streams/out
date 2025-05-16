@@ -1,0 +1,40 @@
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] IncrementalCompile -----------[0m
+[0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
+[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 4 products, 3 sources, 10 libraries[0m
+[0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/src/test/scala/ParserTest.scala, ${BASE}/src/test/scala/StateTest.scala, ${BASE}/src/test/java/GraphicPanelTest.java, ${BASE}/src/test/java/TestUtils.java, ${BASE}/src/test/scala/DrawerTest.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidating '${BASE}/target/scala-3.3.1/classes/GraphicPanel.class' because ${BASE}/target/scala-3.3.1/classes/GraphicPanel.class (farm(47407e366055af13)) != ${BASE}/target/scala-3.3.1/classes (absent)[0m
+[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(${BASE}/src/test/java/TestUtils.java, ${BASE}/src/test/java/GraphicPanelTest.java), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(${BASE}/target/scala-3.3.1/classes/GraphicPanel.class),API Changes: Set())[0m
+[0m[[0m[0mdebug[0m] [0m[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial source changes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	removed: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	added: Set(${BASE}/src/test/java/TestUtils.java, ${BASE}/src/test/java/GraphicPanelTest.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modified: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set(${BASE}/target/scala-3.3.1/classes/GraphicPanel.class)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	product: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set(${BASE}/src/test/scala/DrawerTest.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	external source: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/src/test/java/TestUtils.java, ${BASE}/src/test/java/GraphicPanelTest.java, ${BASE}/src/test/scala/DrawerTest.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: [0m
+[0m[[0m[0mdebug[0m] [0m[0mRecompiling all sources: number of invalidated sources > 50.0 percent of all sources[0m
+[0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 3 Scala sources and 2 Java sources to /Users/runhao/Desktop/softwarecorrectness/coursework/sbt_project_experiment/target/scala-3.3.1/test-classes ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mReturning already retrieved and compiled bridge: /Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala3-sbt-bridge/3.3.1/scala3-sbt-bridge-3.3.1.jar.[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 43ed40f2 for Scala Compiler version 3.3.1[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] The Scala compiler is invoked with:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-bootclasspath[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala3-library_3/3.3.1/scala3-library_3-3.3.1.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-classpath[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/Users/runhao/Desktop/softwarecorrectness/coursework/sbt_project_experiment/target/scala-3.3.1/test-classes:/Users/runhao/Desktop/softwarecorrectness/coursework/sbt_project_experiment/target/scala-3.3.1/classes:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_3/2.1.0/scala-parser-combinators_3-2.1.0.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest_3/3.2.18/scalatest_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-core_3/3.2.18/scalatest-core_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-featurespec_3/3.2.18/scalatest-featurespec_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-flatspec_3/3.2.18/scalatest-flatspec_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-freespec_3/3.2.18/scalatest-freespec_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-funsuite_3/3.2.18/scalatest-funsuite_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-funspec_3/3.2.18/scalatest-funspec_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-propspec_3/3.2.18/scalatest-propspec_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-refspec_3/3.2.18/scalatest-refspec_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-wordspec_3/3.2.18/scalatest-wordspec_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-diagrams_3/3.2.18/scalatest-diagrams_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-matchers-core_3/3.2.18/scalatest-matchers-core_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-shouldmatchers_3/3.2.18/scalatest-shouldmatchers_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-mustmatchers_3/3.2.18/scalatest-mustmatchers_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalactic/scalactic_3/3.2.18/scalactic_3-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-compatible/3.2.18/scalatest-compatible-3.2.18.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_3/2.1.0/scala-xml_3-2.1.0.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/runhao/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 1.5898555 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@58424338 directly...[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.073015 s[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing GraphicPanelTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing TestUtils[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.019936667 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 0.093969291 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mdone compiling[0m

@@ -1,0 +1,33 @@
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /Users/runhao/Desktop/softwarecorrectness/coursework/sbt_project_experiment/target/scala-3.3.1/test-classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	StateTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ParserTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MockGraphicPanel.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DrawerTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	StateTest.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ParserTest.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MockGraphicPanel.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DrawerTest.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	StateTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ParserTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MockGraphicPanel.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DrawerTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	StateTest.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ParserTest.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MockGraphicPanel.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DrawerTest.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	StateTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TestUtils.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ParserTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GraphicPanelTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MockGraphicPanel.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DrawerTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	StateTest.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TestUtils.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ParserTest.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GraphicPanelTest.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MockGraphicPanel.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DrawerTest.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /Users/runhao/Desktop/softwarecorrectness/coursework/sbt_project_experiment/target/scala-3.3.1/test-classes.bak[0m
