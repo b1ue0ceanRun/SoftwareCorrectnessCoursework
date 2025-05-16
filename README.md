@@ -1,7 +1,6 @@
 # To Run
-1. Compile Scala: `scalac Parser.scala`   
-2. Compile Java: `javac Main.java`       
-3. Run Java: `java -cp . Main`   
+1. `cd .\sbt_project_experiment\ `
+2. Compile and run: `sbt run`       
 
 
 # To Test
